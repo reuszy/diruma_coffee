@@ -42,7 +42,7 @@ Route::post('cart/remove', [MainSiteController::class, 'removeFromCart'])->name(
 Route::get('cart/view', [MainSiteController::class, 'getCart'])->name('customer.cart.view');
 Route::post('cart/clear', [MainSiteController::class, 'clearCart'])->name('customer.cart.clear');
 Route::post('cart/update', [MainSiteController::class, 'updateCartQuantity'])->name('customer.cart.update');
-Route::get('checkout/', [PaymentController::class, 'index'])->name('customer.checkout');
+// Route::get('checkout/', [PaymentController::class, 'index'])->name('customer.checkout');
 
 Route::post('/process-checkout', [PaymentController::class, 'payment'])->name('payment');
 Route::get('getcart-totalitems/', [MainSiteController::class, 'getTotalItems'])->name('customer.getcart.totalitems');
@@ -74,7 +74,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('customer/store-account', [CustomerController::class, 'store'])->name('customer.account.store');
 
     // login routes
-    Route::get('auth/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+    Route::get('auth/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('auth/process-login/', [AuthController::class, 'login'])->name('auth.login.process');
 
 
@@ -94,6 +94,7 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::post('/payment/repay/{id}', [PaymentController::class, 'repay'])->name('payment.repay');
+    Route::get('checkout/', [PaymentController::class, 'index'])->name('customer.checkout');
 });
 
 

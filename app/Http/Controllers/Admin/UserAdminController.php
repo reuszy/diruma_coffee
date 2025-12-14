@@ -93,8 +93,6 @@ class UserAdminController extends Controller
         return back()->with('success', 'User updated successfully.');
     }
     
-
-    // Delete an admin
     public function destroy($id)
     {
         $user = User::findOrFail($id);

@@ -78,7 +78,7 @@ class PaymentController extends Controller
         \Midtrans\Config::$isSanitized = config('midtrans.isSanitized');
         \Midtrans\Config::$is3ds = config('midtrans.is3ds');
 
-        \Midtrans\Config::$overrideNotifUrl = 'https://privily-interhostile-giovani.ngrok-free.dev/api/midtrans-callback';
+        \Midtrans\Config::$overrideNotifUrl = 'https://diruma.reuszy.site/api/midtrans-callback';
 
         try {
             $customer = Customer::create([
@@ -177,7 +177,7 @@ class PaymentController extends Controller
         \Midtrans\Config::$isSanitized = config('midtrans.isSanitized');
         \Midtrans\Config::$is3ds = config('midtrans.is3ds');
 
-        \Midtrans\Config::$overrideNotifUrl = 'https://privily-interhostile-giovani.ngrok-free.dev/api/midtrans-callback';
+        \Midtrans\Config::$overrideNotifUrl = 'https://diruma.reuszy.site/api/midtrans-callback';
 
         $params = [
             'transaction_details' => [

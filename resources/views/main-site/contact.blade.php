@@ -75,7 +75,7 @@
 @endpush
 
 
-@section('title', 'Contact')
+@section('title', 'Kontak')
 
 @section('header')
     <!-- START HEADER -->
@@ -92,16 +92,16 @@
 @section('content')
 
     <!-- START SECTION BREADCRUMB -->
-    <div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/contact2_bg.jpg">
+    <div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/diruma1.png">
         <div class="container"><!-- STRART CONTAINER -->
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title">
-                        <h1>Contact</h1>
+                        <h1>Kontak</h1>
                     </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Contact</li>
+                        <li class="breadcrumb-item active">Kontak</li>
                     </ol>
                 </div>
             </div>
@@ -119,7 +119,7 @@
                             <i class="linearicons-map2"></i>
                         </div>
                         <div class="contact_text">
-                            <span>Address</span>
+                            <span>Alamat</span>
                             @forelse($addresses as $address)
                                 <p>{{ $address->address }}</p>
                             @empty
@@ -134,7 +134,7 @@
                             <i class="linearicons-envelope-open"></i>
                         </div>
                         <div class="contact_text">
-                            <span>Email Address</span>
+                            <span>Alamat Email</span>
                             <a href="mailto:{{ config('site.email') }}">{{ config('site.email') }}</a> <br>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                             <i class="linearicons-tablet2"></i>
                         </div>
                         <div class="contact_text">
-                            <span>Phone</span>
+                            <span>No. Telepon</span>
                             @forelse($phoneNumbers as $phoneNumber)
                                 <p>{{ $phoneNumber->phone_number }}</p>
                             @empty
@@ -176,7 +176,7 @@
                          <div class="contact_wrap contact_style3 flex-fill">
                                  
                             <div class="contact_text">
-                                <span>Opening Hours</span>
+                                <span>Jam Operasional</span>
                                 @forelse($workingHours as $workingHour)
                                     <p>{{ $workingHour->working_hours }}</p>
                                 @empty

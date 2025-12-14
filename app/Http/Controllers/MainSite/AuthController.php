@@ -44,7 +44,7 @@ class AuthController extends Controller
              'password' => 'required|string',
          ]);
      
-         $user = user::where('email', $request->email)->first();
+         $user = User::where('email', $request->email)->first();
      
          if ($user && Hash::check($request->password, $user->password)) {
 
@@ -52,8 +52,8 @@ class AuthController extends Controller
           
 
              if ($user->status == 1) {
-                 auth::login($user);
-                 return redirect()->route($dashboardRoute);
+                 Auth::login($user);
+                 return redirect()->intended(route($dashboardRoute));
              } else {
                  session(['user_email' => $user->email, 'user_name' => $user->first_name]);
      
@@ -69,7 +69,7 @@ class AuthController extends Controller
                  } 
              }
          } else {
-             return back()->withErrors(['email' => 'Invalid email or password.']);
+             return back()->withErrors(['email' => 'Email atau Password Salah']);
          }
      }
      
@@ -219,6 +219,6 @@ class AuthController extends Controller
      public function logout()
      {
          Auth::logout();
-         return redirect()->route('auth.login')->with('success', 'Logged out successfully.');
+         return redirect()->route('login')->with('success', 'Berhasil Logout');
      }
 }

@@ -88,7 +88,7 @@
 
 @section('content')
 
-<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/checkout_bg.jpg">
+<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/menu_diruma.jpg">
     <div class="container"><div class="row">
             <div class="col-sm-12">
                 <div class="page-title">

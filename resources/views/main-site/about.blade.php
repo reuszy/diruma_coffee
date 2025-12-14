@@ -74,7 +74,7 @@
 @endpush
 
 
-@section('title', 'About')
+@section('title', 'Tentang')
 
 
 @section('header')
@@ -91,16 +91,16 @@
 @section('content')
 
         <!-- START SECTION BREADCRUMB -->
-        <div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/about_bg.jpg">
+        <div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/about_diruma.png">
             <div class="container"><!-- STRART CONTAINER -->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title">
-                            <h1>About Us</h1>
+                            <h1>Diruma Caffe</h1>
                         </div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item active">About Us</li>
+                            <li class="breadcrumb-item active">Tentang</li>
                         </ol>
                     </div>
                 </div>
@@ -115,18 +115,18 @@
             <div class="col-lg-6">
                 <div class="about_box box_shadow1">
                     <div class="heading_s1">
-                        <span class="sub_heading font_style1">About Us</span>
+                        <span class="sub_heading font_style1">Tentang Diruma</span>
                         <h2>{{ config('site.name') }}</h2>
                     </div>
-                    <p>Welcome to {{ config('site.name') }}, where we bring the vibrant and rich flavors of West African cuisine to your table. Our specialty, Suya, is a smoky, spicy delight that's sure to tantalize your taste buds.</p>
-                    <p>At {{ config('site.name') }}, we are dedicated to serving authentic and innovative dishes crafted from the freshest ingredients. Come experience the best of West African culinary tradition with us!</p>
+                    <p>Selamat datang ke {{ config('site.name') }}, woi sumpah ini diisi apa?</p>
+                    <p>Pada {{ config('site.name') }}, ini juga diisi apa woi?</p>
                 </div>
             </div>
             
         	<div class="col-lg-6">	
                 <div class="fancy_style1 overlay_bg_20">
-                    <img src="/assets/images/about_img5.jpg" alt="about_img5" />
-                    <a href="https://www.youtube.com/watch?v=ZE2HxTmxfrI" class="btn btn-ripple ripple_center video_popup animation" data-animation="fadeInUp" data-animation-delay="0.6s"><span class="ripple"><i class="ion-play"></i></span></a>
+                    <img src="/assets/images/about_diruma.png" alt="about_img5" />
+                    <a href="https://www.youtube.com/watch?v=RAyCWNH_2To" class="btn btn-ripple ripple_center video_popup animation" data-animation="fadeInUp" data-animation-delay="0.6s"><span class="ripple"><i class="ion-play"></i></span></a>
                 </div>
             </div>
         </div>
@@ -134,15 +134,15 @@
 </div>
 <!-- END SECTION ABOUT --> 
         <!-- START SECTION CTA -->
-        <div class="section background_bg" data-img-src="/assets/images/cta_bg.jpg">
+        <div class="section background_bg" data-img-src="/assets/images/about_diruma2.png">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-8 animation" data-animation="fadeInUp" data-animation-delay="0.02s">
                         <div class="heading_s1 heading_light">
-                            <span class="sub_heading font_style1">Experience the Authentic Flavors</span>
-                            <h2>{{ config('site.name') }}: A Taste of Tradition</h2>
+                            <span class="sub_heading font_style1">Rasakan Pengalaman Rasa Kopi Yang Autentik</span>
+                            <h2>{{ config('site.name') }}: Caffe Kalcer Pwt Ngapak</h2>
                         </div>
-                        <p class="text-white">Embark on a culinary journey with {{ config('site.name') }}, where we celebrate the rich and diverse flavors of West Africa. Our signature Suya, crafted with a blend of traditional spices, offers a unique and unforgettable dining experience.</p>
+                        <p class="text-white">Mulailah perjalanan sebagai pendekar kopi bersama {{ config('site.name') }}, ini diisi apa woiii</p>
                     </div>
                 </div>
             </div>
@@ -161,8 +161,8 @@
                         <i class="flaticon-dining-table"></i>
                     </div>
                     <div class="icon_box_content">
-                        <h5 class="text-uppercase">Authentic African Cuisine</h5>
-                        <p>Relish the flavors of traditional African meals, lovingly prepared to preserve our rich culinary heritage.</p>
+                        <h5 class="text-uppercase">Ini Diisi Apa?</h5>
+                        <p>Gatau mau nulis apa</p>
                     </div>
                 </div>
             </div>
@@ -174,8 +174,8 @@
                         <i class="flaticon-contact"></i>
                     </div>
                     <div class="icon_box_content">
-                        <h5 class="text-uppercase">Homemade Goodness</h5>
-                        <p>Our meals are prepared with care, blending homemade recipes and fresh ingredients to make you feel right at home.</p>
+                        <h5 class="text-uppercase">Diisi apa ini</h5>
+                        <p>Belum kepikiran mau nulis apa</p>
                     </div>
                 </div>
             </div>
@@ -187,8 +187,8 @@
                         <i class="flaticon-restaurant"></i>
                     </div>
                     <div class="icon_box_content">
-                        <h5 class="text-uppercase">Satisfying Every Bite</h5>
-                        <p>Enjoy meals that are not just delicious but crafted to leave you completely satisfied with every bite.</p>
+                        <h5 class="text-uppercase">diisi apa yaa??</h5>
+                        <p>belum kepikiran juga sih</p>
                     </div>
                 </div>
             </div>

@@ -31,7 +31,7 @@
 @section('content')
 
 <!-- BREADCRUMB -->
-<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/menu_bg2.jpg">
+<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/cta2_bg.png">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">

@@ -89,7 +89,7 @@
 @endpush
 
 
-@section('title', 'Create Account')
+@section('title', 'Login')
 
 
 @section('header')
@@ -106,7 +106,7 @@
 @section('content')
 
     <!-- START SECTION BREADCRUMB -->
-    <div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/checkout_bg.jpg">
+    <div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/blog_diruma.png">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -140,7 +140,7 @@
 
                                 <!-- Email -->
                                 <div class="form-group col-md-12">
-                                    <label for="email">Email Address</label>
+                                    <label for="email">Email</label>
                                     <input id="email" class="form-control" required type="email" name="email" value="{{ old('email') }}">
                                 </div>
 
@@ -164,7 +164,7 @@
 
                                 <!-- Login Link -->
                                 <div class="form-group mb-0 mt-2 col-md-12">
-                                    <p class="text-center">Don't have an account? <a href="{{ route('customer.account.create') }}">Create an Account</a></p>
+                                    <p class="text-center">Belum punya akun? <a href="{{ route('customer.account.create') }}">Registrasi Akun</a></p>
                                     {{-- <p class="text-center">Forgot password? <a href="{{ route('auth.password.request') }}">Reset here</a></p> --}}
                                 </div>
 

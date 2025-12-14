@@ -25,6 +25,26 @@ use App\Http\Requests\CustomerDetailsRequest;
 use App\Http\Controllers\Traits\OrderNumberGeneratorTrait;
 use App\Http\Controllers\Traits\MainSiteViewSharedDataTrait;
 
+/**
+ * @OA\Info(
+ * version="1.0.0",
+ * title="Dokumentasi API Diruma",
+ * description="",
+ * @OA\Contact(
+ * email="email@anda.com"
+ * )
+ * )
+ *
+ * @OA\SecurityScheme(
+ * type="http",
+ * description="Login dengan email dan password untuk dapatkan token",
+ * name="Token based Based",
+ * in="header",
+ * scheme="bearer",
+ * bearerFormat="JWT",
+ * securityScheme="bearerAuth",
+ * )
+ */
 
 class MainSiteController extends Controller
 {

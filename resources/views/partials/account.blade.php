@@ -12,7 +12,7 @@
     <div class="account_box_body">
         @guest
             <ul class="cart_list">
-                <li><a href="{{ route('auth.login') }}">Login</a></li>
+                <li><a href="{{ route('login') }}">Login</a></li>
                 <li><a href="{{ route('customer.account.create') }}">Register</a></li>
                 <li><a href="{{ route('home') }}">Home</a></li>
             </ul>

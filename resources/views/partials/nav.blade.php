@@ -17,6 +17,7 @@
         </ul>
         
     </div>
+
     <ul class="navbar-nav attr-nav align-items-center">
         <li>
             <a class="nav-link account_trigger" href="#"><i class="linearicons-user"></i></a>
@@ -32,11 +33,22 @@
                 </li>
             @endif
         @endauth
-    </ul>
 
-    <div class="header_btn d-sm-block d-none">
-        <a href="{{ route('catering') }}" class="btn btn-success rounded-0 ml-2 btn-sm"><i class="fa fa-cutlery"></i>KATERING</a>
-    </div>  
+    </ul>
+    
+    {{-- <div class="header_btn ml-1 ml-md-2"> 
+        <a href="{{ route('catering') }}" class="btn btn-success rounded-0 btn-sm px-2">
+            
+            <i class="fas fa-utensils d-none d-sm-inline mr-1"></i>
+            KATERING
+        </a>
+    </div> --}}
+
+    <div class="header_btn ml-1 ml-md-2 {{ Auth::check() ? 'd-none d-lg-block' : '' }}">
+    <a href="{{ route('catering') }}" class="btn btn-success rounded-0 btn-sm px-2">
+        <i class="fas fa-utensils d-none d-sm-inline mr-1"></i>
+        KATERING
+    </a>
+</div>
 
 </nav>
-

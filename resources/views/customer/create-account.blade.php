@@ -88,7 +88,7 @@
 @endpush
 
 
-@section('title', 'Create Account')
+@section('title', 'Registrasi')
 
 
 @section('header')
@@ -105,16 +105,16 @@
 @section('content')
 
 <!-- START SECTION BREADCRUMB -->
-<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/checkout_bg.jpg">
+<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/blog_diruma.png">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title">
-                    <h1>Create Account</h1>
+                    <h1>Registrasi Akun</h1>
                 </div>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Create Account</li>
+                    <li class="breadcrumb-item active">Registrasi</li>
                 </ol>
             </div>
         </div>
@@ -138,24 +138,24 @@
 
                             <!-- First Name -->
                             <div class="form-group col-md-6">
-                                <label for="first_name">First Name</label>
+                                <label for="first_name">Nama Depan</label>
                                 <input id="first_name" class="form-control" required type="text" name="first_name" value="{{ old('first_name') }}">
                             </div>
                             <!-- Last Name -->
                             <div class="form-group col-md-6">
-                                <label for="last_name">Last Name</label>
+                                <label for="last_name">Nama Belakang (Opsional)</label>
                                 <input id="last_name" class="form-control" required type="text" name="last_name" value="{{ old('last_name') }}">
                             </div>
 
                             <!-- Email -->
                             <div class="form-group col-md-12">
-                                <label for="email">Email Address</label>
+                                <label for="email">Email</label>
                                 <input id="email" class="form-control" required type="email" name="email" value="{{ old('email') }}">
                             </div>
 
                             <!-- Phone Number -->
                             <div class="form-group col-md-12">
-                                <label for="phone_number">Phone Number</label>
+                                <label for="phone_number">Nomor Telepon</label>
                                 <input id="phone_number" class="form-control" required type="tel" name="phone_number" value="{{ old('phone_number') }}">
                             </div>
 
@@ -174,7 +174,7 @@
 
                             <!-- Repeat Password -->
                             <div class="form-group col-md-12 position-relative">
-                                <label for="password_confirmation">Confirm Password</label>
+                                <label for="password_confirmation">Komfirmasi Password</label>
                                 <div class="input-group">
                                     <input id="password_confirmation" class="form-control" required type="password" name="password_confirmation">
                                     <div class="input-group-append">
@@ -187,12 +187,12 @@
 
                             <!-- Submission -->
                             <div class="form-group mb-0 mt-2 col-md-12">
-                                <button type="submit" class="btn btn-default btn-block">Create Account</button>
+                                <button type="submit" class="btn btn-default btn-block">Registrasi Akun</button>
                             </div>
 
                             <!-- Login Link -->
                             <div class="form-group mb-0 mt-2 col-md-12">
-                                <p>If you have an account? <a href="{{ route('auth.login') }}">Login here</a></p>
+                                <p>Sudah memiliki akun ? <a href="{{ route('login') }}">Login</a></p>
                             </div>
 
                         </div>

@@ -1,6 +1,6 @@
  
 <!-- START FOOTER -->
-<footer class="footer_dark pattern_top background_bg overlay_bg_80" data-img-src="/assets/images/footer_bg.jpg">
+<footer class="footer_dark pattern_top background_bg overlay_bg_80" data-img-src="/assets/images/footer_diruma.jpg">
 	<div class="footer_top">
         <div class="container">
             <div class="row">
@@ -16,9 +16,9 @@
                                 @foreach($socialMediaHandles as $handle)
                                 <li>
                                     @if($handle->social_media === 'instagram')
-                                        <a href="{{ "https://www.instagram.com/" . $handle->handle }}" target="_blank"><i class="fa fa-instagram"></i></a>
+                                        <a href="{{ "https://www.instagram.com/" . $handle->handle }}" target="_blank"><i class="fab fa-instagram"></i></a>
                                     @elseif($handle->social_media === 'tiktok')
-                                        <a href="{{ "https://www.tiktok.com/@" . $handle->handle }}" target="_blank"><i class="fa fa-globe"></i></a>
+                                        <a href="{{ "https://www.tiktok.com/@" . $handle->handle }}" target="_blank"><i class="fab fa-tiktok"></i></a>
                                     @endif
                                 </li>
                                 @endforeach                      
@@ -30,19 +30,19 @@
                         <h6 class="widget_title">Links</h6>
                         <ul class="widget_links">
                             <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="{{ route('menu') }}">Our Menu</a></li>
-                            <li><a href="{{ route('about') }}">About us</a> </li>
-                            <li><a href="{{ route('contact') }}">Contact us</a></li>
+                            <li><a href="{{ route('menu') }}">Menu</a></li>
+                            <li><a href="{{ route('about') }}">Tentang Diruma</a> </li>
+                            <li><a href="{{ route('contact') }}">Kontak Diruma</a></li>
                             
                             @if($whatsAppNumber)
-                            <li> <a href="https://wa.me/{{ $whatsAppNumber->phone_number }}" target="_blank" ><i class="fa fa-whatsapp"></i> Chat us on Whatsapp</a></li>
+                            <li> <a href="https://wa.me/{{ $whatsAppNumber->phone_number }}" target="_blank" ><i class="fab fa-whatsapp"></i> Chat us on Whatsapp</a></li>
                             @endif
                         </ul>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3 col-sm-12">
                 	<div class="widget">
-                        <h6 class="widget_title">Contact Info</h6>
+                        <h6 class="widget_title">Informasi Kontak</h6>
                         <ul class="contact_info contact_info_light">
                             @if($firstRestaurantAddress) <li> <i class="ti-location-pin"></i> <p>{{ $firstRestaurantAddress->address }}</p></li> @endif
 

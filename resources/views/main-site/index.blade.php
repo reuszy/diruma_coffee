@@ -151,13 +151,13 @@
 <div class="banner_section full_screen staggered-animation-wrap pattern_banner_bottom">
     <div id="carouselExampleControls" class="carousel slide carousel-fade carousel_style2 light_arrow" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active background_bg overlay_bg_40" data-img-src="/assets/images/download3.jpg">
+            <div class="carousel-item active background_bg overlay_bg_40" data-img-src="/assets/images/diruma1.jpg">
                 <div class="banner_slide_content">
                     <div class="container"><!-- STRART CONTAINER -->
                         <div class="row">
                             <div class="col-lg-7 col-md-12 col-sm-12">
                                 <div class="banner_content2 text_white">
-                                    <h2 class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.2s">Woi ini ditulis apa yaa Rafi ganteng banget</h2>
+                                    <h2 class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.2s">Woi ini ditulis apa</h2>
                                     <p class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.4s">Lorem ipsum dolor, sit amet consectetur adipisicing elit.<br class="d-none d-md-block" /></p>
                                     {{-- <a class="btn btn-default rounded-0 staggered-animation" href="{{ route('menu') }}" data-animation="fadeInUp" data-animation-delay="0.6s">Order Online</a> --}}
                                 </div>
@@ -166,7 +166,7 @@
                     </div><!-- END CONTAINER-->
                 </div>
             </div>
-            <div class="carousel-item background_bg overlay_bg_60" data-img-src="/assets/images/banner0.png">
+            <div class="carousel-item background_bg overlay_bg_60" data-img-src="/assets/images/diruma2.jpg">
                 <div class="banner_slide_content">
                     <div class="container"><!-- STRART CONTAINER -->
                         <div class="row justify-content-center">
@@ -182,7 +182,7 @@
                     </div><!-- END CONTAINER-->
                 </div>
             </div>
-            <div class="carousel-item background_bg overlay_bg_40" data-img-src="/assets/images/banner0.png">
+            <div class="carousel-item background_bg overlay_bg_40" data-img-src="/assets/images/diruma3.jpg">
                 <div class="banner_slide_content">
                     <div class="container"><!-- STRART CONTAINER -->
                         <div class="row justify-content-md-end">
@@ -215,8 +215,8 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6 col-lg-8">
                     <div class="heading_s1 animation text-center" data-animation="fadeInUp" data-animation-delay="0.02s">
-                        <div class="sub_heading font_style1">Special Food & Coffee</div>
-                        <h2>from Our Menu</h2>
+                        <div class="sub_heading font_style1">Makanan dan Minuman Spesial!</div>
+                        <h2>Dari Menu Diruma</h2>
                     </div>
                     <div class="small_divider clearfix"></div>
                 </div>
@@ -227,7 +227,7 @@
                     <div class="row">
 
    
-                        @forelse ($menus as $menu) 
+                        @forelse ($menus->take(4) as $menu) 
 
 
                         <div class="d-flex col-lg-3 col-sm-6">
@@ -268,7 +268,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-7 col-md-9 animation text-center" data-animation="fadeInUp" data-animation-delay="0.02s">
                 <div class="heading_s1 heading_light">
-                    <span class="sub_heading font_style1">Experience Caffe Kalcer</span>
+                    <span class="sub_heading font_style1">Rasakan Pengalaman Caffe Kalcer</span>
                     <h2>Ga Kalcer Gaboleh Kesini</h2>
                 </div>
                 <p class="text-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
@@ -385,10 +385,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 animation" data-animation="fadeInUp" data-animation-delay="0.02s">
                 <div class="heading_s1 text-center">
-                    <span class="sub_heading font_style1">Testimonial</span>
-                    <h2>Our Customers Say!</h2>
+                    <span class="sub_heading font_style1">Testimoni</span>
+                    <h2>Customer Kami Mengatakan!</h2>
                 </div>
-                <p class="text-center leads">Hear what our happy customers have to say about their experience with us.</p>
+                {{-- <p class="text-center leads">Hear what our happy customers have to say about their experience with us.</p> --}}
             </div>
         </div>
         <div class="row justify-content-center">
@@ -424,10 +424,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 animation" data-animation="fadeInUp" data-animation-delay="0.2s">
                 <div class="heading_s1 text-center">
-                    <span class="sub_heading font_style1">From The Blog</span>
-                    <h2>Our Latest News</h2>
+                    <span class="sub_heading font_style1">Blog Diruma Caffe and Living</span>
+                    <h2>Berita Terbaru Kita!</h2>
                 </div>
-                <p class="text-center leads">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                {{-- <p class="text-center leads">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p> --}}
             </div>
         </div>
         <div class="row justify-content-center">

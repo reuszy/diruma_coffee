@@ -69,7 +69,7 @@ class CustomerController extends Controller
         if ($user) {
             $message = ['success' => 'Account created successfully. You can now log in.'];
             // auth::login($user);
-            return redirect()->route('auth.login')->with($message);
+            return redirect()->route('login')->with($message);
         } else {
             $message = ['error' => 'Failed to create account. Please try again.'];
             return redirect()->back()->withInput()->with($message);

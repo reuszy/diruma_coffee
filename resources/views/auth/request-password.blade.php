@@ -144,7 +144,7 @@
                         </div>
 
                          <div class="form-group mt-2">
-                            <a class="btn btn-danger btn-block" href="{{ route('auth.login') }}">Back to Login</a>
+                            <a class="btn btn-danger btn-block" href="{{ route('login') }}">Back to Login</a>
                         </div>                    
                     </form>
                 </div>

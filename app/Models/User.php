@@ -5,8 +5,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements CanResetPassword
+class User extends Authenticatable implements CanResetPassword, JWTSubject
 {
     use HasFactory, Notifiable;
     
@@ -46,6 +47,16 @@ class User extends Authenticatable implements CanResetPassword
     public function updatedOrders()
     {
         return $this->hasMany(Order::class, 'updated_by_user_id');
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return[];
     }
 
 }

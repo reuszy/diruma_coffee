@@ -223,7 +223,7 @@
 @section('content')
 
  <!-- START SECTION BREADCRUMB -->
-<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/cart_bg.jpg">
+<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/blog_diruma.png">
     <div class="container"><!-- STRART CONTAINER -->
         <div class="row">
             <div class="col-sm-12">

@@ -76,7 +76,7 @@
 @endpush
 
 
-@section('title', 'Blog')
+@section('title', 'Berita')
 
 
 @section('header')
@@ -93,16 +93,16 @@
 @section('content')
 
  <!-- START SECTION BREADCRUMB -->
-<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/blog_bg.jpg">
+<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/blog_diruma.png">
     <div class="container"><!-- STRART CONTAINER -->
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title">
-            		<h1>Blog</h1>
+            		<h1>Berita</h1>
                 </div>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Blog</li>
+                    <li class="breadcrumb-item active">Berita</li>
                 </ol>
             </div>
         </div>
@@ -119,21 +119,21 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Search blogs..." value="{{ request('search') }}">
+                    <input type="text" name="search" class="form-control" placeholder="Cari berita..." value="{{ request('search') }}">
                       <div class="input-group-append">
-                        <button type="submit" class="btn btn-sm btn-danger"  ><i class="linearicons-magnifier"></i> Search</button>
+                        <button type="submit" class="btn btn-sm btn-success"  ><i class="linearicons-magnifier"></i> Search</button>
                       </div>
                     </div>
                   </div>
       
                   @if (request('search'))
                   <div class="alert alert-info mt-3">
-                    <strong>Search Results:</strong>
-                    We found <strong>{{ $blogs->total() }}</strong> 
-                    {{ $blogs->total() === 1 ? 'result' : 'results' }} for your query 
+                    <strong>Hasil Pencarian:</strong>
+                    Kami menemukan <strong>{{ $blogs->total() }}</strong> 
+                    {{ $blogs->total() === 1 ? 'hasil' : 'hasil' }} dari pencarian kamu 
                     <em>"{{ request('search') }}"</em>.
                     <hr/>
-                    <a href="{{ route('blogs') }}" class="btn-sm btn btn-light">Return to Blogs</a>
+                    <a href="{{ route('blogs') }}" class="btn-sm btn btn-success">Kembali ke Berita</a>
                 </div>
               @endif
                   
@@ -163,7 +163,7 @@
                     @if(!request('search'))
                         <div class="col-12">                   
                             <div class="alert alert-warning text-center" role="alert">
-                                No blogs found.
+                                Yah gaada beritanya..
                             </div>
                         </div>
                     @endif

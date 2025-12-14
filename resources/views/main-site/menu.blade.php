@@ -93,7 +93,7 @@
 @section('content')
 
         <!-- START SECTION BREADCRUMB -->
-    <div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/menu_bg2.jpg">
+    <div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/menu_diruma.jpg">
         <div class="container"><!-- STRART CONTAINER -->
             <div class="row">
                 <div class="col-sm-12">
@@ -102,7 +102,7 @@
                     </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Our Menu</li>
+                        <li class="breadcrumb-item active">Menu</li>
                     </ol>
                 </div>
             </div>
@@ -123,25 +123,26 @@
 
             <div class="form-group">
                 <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search menu items..." value="{{ request('search') }}">
+                <input type="text" name="search" class="form-control" placeholder="Cari menu..." value="{{ request('search') }}">
                   <div class="input-group-append">
                     <button type="submit" class="btn btn-sm btn-success"  ><i class="linearicons-magnifier"></i> Search</button>
                   </div>
                 </div>
               </div>
   
-              @if (request('search'))
-              <div class="alert alert-info">
-                  We found 
-                  <strong>
-                      {{ $categories->sum(fn($category) => $category->menus->count()) }}
-                  </strong> 
-                  {{ $categories->sum(fn($category) => $category->menus->count()) === 1 ? 'result' : 'results' }} 
-                  for your query: <em>"{{ request('search') }}"</em>.
-                  <hr/>
-                  <a href="{{ route('menu') }}" class="btn-sm btn btn-light">Return to menu</a>
-              </div>
-          @endif
+            @if (request('search'))
+                <div class="alert alert-info">
+                    Kami menemukan: 
+                        <strong>
+                            {{ $categories->sum(fn($category) => $category->menus->count()) }}
+                        </strong> 
+                            {{ $categories->sum(fn($category) => $category->menus->count()) === 1 ? 'hasil' : 'hasil' }} 
+                            dari pencarian kamu: <em>"{{ request('search') }}"</em>.
+                        <hr/>
+                        <a href="{{ route('menu') }}" class="btn-sm btn btn-success">Kembali ke menu</a>
+                </div>
+            @endif
+        
               
         </form>
 
@@ -183,7 +184,7 @@
             @endif
         @endforeach
     @else
-        <p>No categories found.</p>
+        <p>Kategori tidak ditemukan.</p>
     @endif
             
  

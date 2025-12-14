@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserAdminController extends Controller
+class UserController extends Controller
 {
     // Show the login form
     public function showLoginForm()
