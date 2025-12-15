@@ -128,7 +128,7 @@ php artisan key:generate
     php artisan db:seed --class=UserSeeder
     ```
 
-### **Step 7: Start the Application**
+### **Step 7: Jalankan Projectnya**
 
 Run projectnya dan akan berjalan di port 8000 atau port apapun tergantung pilihan anda:
 
