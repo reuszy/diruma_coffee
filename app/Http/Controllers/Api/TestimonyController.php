@@ -212,7 +212,7 @@ class TestimonyController extends Controller
     {
         $user = auth('api')->user();
         if(!$user || $user->role !== 'global_admin' && $user->role !== 'admin'){
-            return response()->json(['Pesan' => 'Forbidden'], 403);
+            return response()->json(['Pesan' => 'Dilarang'], 403);
         }
 
         $testimony = Testimony::find($id);

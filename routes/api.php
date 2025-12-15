@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('/menus', [MenuController::class, 'store']);
     Route::put('/menus/{id}', [MenuController::class, 'update']);
+    Route::delete('/menus/{id}', [MenuController::class, 'destroy']);
 
     Route::post('/categories', [CategoryController::class, 'store']);
     Route::put('/categories/{id}', [CategoryController::class, 'update']); 
@@ -62,5 +63,5 @@ Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/testimony', [TestimonyController::class, 'index']);
 Route::get('/testimony/{id}', [TestimonyController::class, 'show']);
 
-// Webhook Midtrans
+// WEBHOOK MIDTRANS
 Route::post('midtrans-callback', [MidtransCallbackController::class, 'callback']);

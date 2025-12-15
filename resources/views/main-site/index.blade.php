@@ -151,13 +151,14 @@
 <div class="banner_section full_screen staggered-animation-wrap pattern_banner_bottom">
     <div id="carouselExampleControls" class="carousel slide carousel-fade carousel_style2 light_arrow" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active background_bg overlay_bg_40" data-img-src="/assets/images/diruma1.jpg">
+            {{-- <div class="carousel-item active background_bg overlay_bg_40" data-img-src="/assets/images/diruma1.jpg"> --}}
+            <div class="carousel-item active background_bg overlay_bg_40" data-img-src="/assets/images/lil.jpg">
                 <div class="banner_slide_content">
                     <div class="container"><!-- STRART CONTAINER -->
                         <div class="row">
                             <div class="col-lg-7 col-md-12 col-sm-12">
                                 <div class="banner_content2 text_white">
-                                    <h2 class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.2s">Woi ini ditulis apa</h2>
+                                    <h2 class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.2s">Lil Lil Lil Bahlil</h2>
                                     <p class="staggered-animation" data-animation="fadeInUp" data-animation-delay="0.4s">Lorem ipsum dolor, sit amet consectetur adipisicing elit.<br class="d-none d-md-block" /></p>
                                     {{-- <a class="btn btn-default rounded-0 staggered-animation" href="{{ route('menu') }}" data-animation="fadeInUp" data-animation-delay="0.6s">Order Online</a> --}}
                                 </div>

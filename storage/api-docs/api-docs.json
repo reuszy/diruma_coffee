@@ -658,6 +658,119 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "post": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Tambah Menu Baru",
+                "description": "Menambahkan data menu",
+                "operationId": "31e1ddbd8da961fb496e3e2d46b53823",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "category_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 25000
+                                    },
+                                    "category_id": {
+                                        "description": "",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "image": {
+                                        "description": "max 2MB",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Sukses"
+                                        },
+                                        "pesan": {
+                                            "type": "string",
+                                            "example": "Menu berhasil Ditambahkan"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request (Validasi Gagal)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "The name field is required."
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden (Bukan Admin)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "pesan": {
+                                            "type": "string",
+                                            "example": "Dilarang, hanya admin yang dapat mengakses halaman ini"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/menus/{id}": {
@@ -702,6 +815,165 @@
                         "description": "Menu Tidak Ditemukan"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Update Menu",
+                "description": "Mengupdate data menu. Gunakan method POST dengan _method=PUT untuk support upload file.",
+                "operationId": "998397d03ad21e1f0403836cc6cbc3bd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID Menu",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "category_id",
+                                    "_method"
+                                ],
+                                "properties": {
+                                    "_method": {
+                                        "description": "Wajib diisi PUT",
+                                        "type": "string",
+                                        "example": "PUT"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 25000
+                                    },
+                                    "category_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "image": {
+                                        "description": "Upload gambar baru jika ingin ganti",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "sukses"
+                                        },
+                                        "pesan": {
+                                            "type": "string",
+                                            "example": "Menu berhasil di update"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "pesan": {
+                                            "type": "string",
+                                            "example": "Tidak ada Menu"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "pesan": {
+                                            "type": "string",
+                                            "example": "Dilarang, hanya admin yang dapat mengakses halaman ini"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Hapus Menu",
+                "operationId": "e367f4eb9f2883c92645c50bbac63925",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil Dihapus"
+                    },
+                    "404": {
+                        "description": "Tidak ditemukan"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/testimony": {

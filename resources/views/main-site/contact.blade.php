@@ -186,14 +186,32 @@
                         </div>
                  </div>
                 
-                <div class="col-lg-6 animation mt-4 mt-lg-0" data-animation="fadeInUp" data-animation-delay="0.3s">             
-                    <div class="map">
+                <div class="col-lg-6 animation mt-4 mt-lg-0" data-animation="fadeInUp" data-animation-delay="0.3s">
+                    @if ($firstRestaurantAddress)
+                        <div class="map" style="height:200px; overflow:hidden;">
+                        <iframe 
+                            src="https://maps.google.com/maps?q={{ urlencode($firstRestaurantAddress->address) }}&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            style="border:0; width:100%; height:100%"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    @else
+                    <div class="map" style="height:200px; overflow:hidden;">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Alun-alun+Purwokerto&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            style="border:0; width:100%; height:100%"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    @endif
+
+                    {{-- <div class="map">
                         @if($firstRestaurantAddress)
                             <iframe 
                                 width="100%" 
-                                height="400" 
+                                height="200px" 
                                 style="border:0;" 
-                                allowfullscreen="" 
+                                allowfullscreen="true" 
                                 loading="lazy" 
                                 referrerpolicy="no-referrer-when-downgrade"
                                 src="https://maps.google.com/maps?q={{ urlencode($firstRestaurantAddress->address) }}&t=&z=15&ie=UTF8&iwloc=&output=embed">
@@ -201,12 +219,12 @@
                         @else
                             <iframe 
                                 width="100%" 
-                                height="400" 
+                                height="200px" 
                                 style="border:0;" 
                                 src="https://maps.google.com/maps?q=Alun-alun+Purwokerto&t=&z=15&ie=UTF8&iwloc=&output=embed">
                             </iframe>
                         @endif
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
