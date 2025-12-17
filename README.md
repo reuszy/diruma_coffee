@@ -48,7 +48,7 @@ Ikuti langkah - langkah berikut:
 ### **Step 1: Clone Repository**
 
 ```bash
-git https://github.com/reuszy/diruma_coffee.git
+git clone https://github.com/reuszy/diruma_coffee.git
 cd diruma_coffee
 ```
 
