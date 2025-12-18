@@ -48,7 +48,7 @@ Ikuti langkah - langkah berikut:
 ### **Step 1: Clone Repository**
 
 ```bash
-git https://github.com/reuszy/diruma_coffee.git
+git clone https://github.com/reuszy/diruma_coffee.git
 cd diruma_coffee
 ```
 
@@ -123,7 +123,11 @@ php artisan key:generate
 ### **Step 6: Set Up Database**
 
 1. Buat database MySQL baru (e.g., `db_diruma`).
-2. Run migration dan seeder nya:
+2. Migration database nya:
+    ```bash
+    php artisan migrate
+    ```
+3. Migrate seeder nya:
     ```bash
     php artisan db:seed --class=UserSeeder
     ```
