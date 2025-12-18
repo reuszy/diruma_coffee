@@ -58,24 +58,23 @@ class MainSiteController extends Controller
         $this->shareMainSiteViewData();
     }
 
+
     public function home()
     {
-
-
         $menus = Menu::inRandomOrder()->get();
         $blogs = Blog::orderBy('created_at', 'desc')->limit(3)->get();
         $testimonies = Testimony::inRandomOrder()->limit(5)->get();
 
-
-
-
         return view('main-site.index', compact('menus','blogs','testimonies'));
     }
+
 
     public function about()
     {
         return view('main-site.about');
     }
+
+
     public function contact()
     {
         $addresses = RestaurantAddress::all();
@@ -115,15 +114,13 @@ class MainSiteController extends Controller
                     return $item['quantity'];
                 }
             }
-            return 0; // Return 0 if item is not found
+            return 0;
         }
         
-        // Usage example
+        // Usage
         $quantity = getItemQuantity($cart, $id);
         
-    
-    
-        // Fetch 5 random related menus  
+        // Fetch 5
         $relatedMenus = Menu::where('id', '!=', $id)->inRandomOrder()->limit(5)->get();
     
         return view('main-site.menu-item', compact('menu','quantity', 'relatedMenus'));
@@ -138,20 +135,16 @@ class MainSiteController extends Controller
 
     public function checkout()
     {
-        // Check if the session contains the cart key
         if (!session()->has($this->cartkey)) {
             return redirect()->route('menu')->withErrors('Your cart is empty. Please add items to your cart before checking out.');
         }
-    
-        // Fetch the cart from the session
+
         $cart = session()->get($this->cartkey, []);
     
-        // Check if the cart is empty
         if (empty($cart)) {
             return redirect()->route('menu')->withErrors('Your cart is empty. Please add items to your cart before checking out.');
         }
-    
-        // Calculate the subtotal
+
         $subtotal = array_reduce($cart, function($carry, $item) {
             return $carry + ($item['price'] * $item['quantity']);
         }, 0);
@@ -161,16 +154,13 @@ class MainSiteController extends Controller
     
     public function proccessCheckout(CustomerDetailsRequest $request)
     {
-        // Check if the session contains the cart key
         if (!session()->has($this->cartkey)) {
             return redirect()->route('menu')->withErrors('Your cart is empty. Please add items to your cart before checking out.');
         }
 
-
         $order_settings = OrderSettings::firstOrNew();
 
         if (!$order_settings->exists) {
-            // OrderSettings has no data
             return redirect()->route('home')->withErrors('No order settings found.');
         }
         $price_per_mile =   $order_settings->price_per_mile;
@@ -179,10 +169,8 @@ class MainSiteController extends Controller
         $restaurant_address = $this->firstRestaurantAddress ?? config('site.address');
         $delivery_address   = $request->address . ' ' . $request->city . ' ' . $request->state . ' ' . $request->postcode;
 
-        // Call the DistanceHelper to get the distance
         $distanceData = DistanceHelper::getDistance($restaurant_address, $delivery_address);
 
-        // Check if there's an error
         if (isset($distanceData['error'])) {
             return back()->withErrors($distanceData['error']);
         }
@@ -196,42 +184,36 @@ class MainSiteController extends Controller
         
         $delivery_fee = ceil($price_per_mile * $distance_in_miles * 100) / 100;
 
-        // Store delivery_fee , price_per_mile and distance_in_miles in  session 
         session()->put('delivery_details', [ 'delivery_fee' => $delivery_fee, 'distance_in_miles' => $distance_in_miles,  'price_per_mile' => $price_per_mile, ]);
 
-        // Store the validated data in the session
         Session::put('customer_details', $request->validated());
 
-        // Generate a unique 7-digit order number and store in session
         $order_no = $this->generateOrderNumber();
         session(['order_no' => $order_no]);
 
-
-        // redirect to payment route
         return redirect()->route('payment');
 
     }
     
-    public function cateringPage()
-{
-    // ambil hanya kategori bernama 'Catering'
-    $category = Category::with('menus')
-        ->where('name', 'Catering')
-        ->first();
 
-    // jika tidak ada kategori Catering
-    if (!$category) {
+    public function cateringPage()
+    {
+        $category = Category::with('menus')
+            ->where('name', 'Katering')
+            ->first();
+
+        if (!$category) {
+            return view('catering.catering', [
+                'category' => null,
+                'site_settings' => SiteSetting::first()
+            ]);
+        }
+
         return view('catering.catering', [
-            'category' => null,
+            'category' => $category,
             'site_settings' => SiteSetting::first()
         ]);
     }
-
-    return view('catering.catering', [
-        'category' => $category,
-        'site_settings' => SiteSetting::first()
-    ]);
-}
 
 
     public function blogs(Request $request)
@@ -242,7 +224,6 @@ class MainSiteController extends Controller
     
         $query = Blog::query();
     
-        // Check if there's a search query
         if ($request->has('search') && $request->search != '') {
             $query->where('name', 'like', '%' . $request->search . '%')->orWhere('content', 'like', '%' . $request->search . '%');
         }
@@ -252,6 +233,7 @@ class MainSiteController extends Controller
         return view('main-site.blogs', compact('blogs'));
     }
     
+
     public function blogView($id)
     {
         $blog = Blog::findOrFail($id);
@@ -260,7 +242,6 @@ class MainSiteController extends Controller
 
         return view('main-site.blog-view', compact('blog','relatedBlogs'));
     }
-
 
     
     public function login()
@@ -274,6 +255,8 @@ class MainSiteController extends Controller
         $privacyPolicy  = PrivacyPolicy::latest()->first();
         return view('main-site.privacy-policy',compact('privacyPolicy'));
     }
+
+    
     public function termsConditions()
     {
         $termsAndCondition = TermsAndCondition::latest()->first();

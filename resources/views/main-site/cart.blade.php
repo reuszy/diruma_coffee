@@ -228,11 +228,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title">
-            		<h1>Shopping Cart</h1>
+            		<h1>Keranjang</h1>
                 </div>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Shopping Cart</li>
+                    <li class="breadcrumb-item active">Keranjang</li>
                 </ol>
             </div>
         </div>
@@ -317,10 +317,10 @@
         <div class="row" id="empty-cart">
             <div class="col-12">
                 <div class="alert alert-secondary text-center" role="alert">
-                    <h4 class="alert-heading">Your Cart is Empty!</h4>
-                    <p>Looks like you haven't added any items to your cart yet. No worries, we've got plenty of delicious options waiting for you.</p>
+                    <h4 class="alert-heading">Keranjang Kamu Kosong!</h4>
+                    <p>Kamu belum menambahkan katering ke keranjang. Jangan khawatir, kami memiliki menu katering sehat dan lezat yang menunggu Kamu.</p>
                     <hr>
-                    <p class="mb-0">Head over to our <a href="{{ route('catering') }}" class="alert-link">Katering</a> and start exploring!</p>
+                    <p class="mb-0">Kunjungi halaman <a href="{{ route('catering') }}" class="alert-link">Katering</a> kami dan segera Order!</p>
                 </div>
             </div>
         </div>

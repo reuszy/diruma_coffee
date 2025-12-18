@@ -1,4 +1,3 @@
-
 @extends('layouts.main-site')
 
 @push('styles')
@@ -150,6 +149,10 @@
         @foreach ($categories as $category)
 
     
+        @if($category->name === 'Catering' || $category->name === 'Katering') 
+            @continue 
+        @endif
+
             @if ($category->menus->isNotEmpty())
             <div class="row align-items-center">
                 <div class="col-md-12">
@@ -184,7 +187,7 @@
             @endif
         @endforeach
     @else
-        <p>Kategori tidak ditemukan.</p>
+        <p>Menu tidak ditemukan.</p>
     @endif
             
  

@@ -98,8 +98,11 @@
     <!-- END HEADER -->
 @endsection
 
-
 @section('content')
+
+@php
+    $isCatering = $menu->category && ($menu->category->name === 'Catering' || $menu->category->name === 'Katering');
+@endphp
 
  <!-- START SECTION BREADCRUMB -->
 <div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/menu_diruma.jpg">
@@ -107,11 +110,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title">
-            		<h1>Product Detail</h1>
+            		<h1>Detail Menu</h1>
                 </div>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Product Detail</li>
+                    <li class="breadcrumb-item active">Detail Menu</li>
                 </ol>
             </div>
         </div>
@@ -139,12 +142,18 @@
                                 <div class="rating">
                                     <div class="product_rate" style="width:100%"></div>
                                 </div>
-                                
                             </div>
                             <br/>
                             <hr/>
                         <div class="pr_desc">
                             <p>{{ $menu->description  }}</p>
+
+                            @if ($isCatering)
+                                <p class="text-danger font-weight-bold mt-2">
+                                    <i class="linearicons-box"></i> Sisa Stok Hari Ini: {{ $menu->stock }} Porsi
+                                </p>
+                            @endif
+
                         </div>
                         <ul class="product-meta">
                             <li>Category:  {{ $menu->category->name }}</li>
@@ -160,17 +169,24 @@
                             </div>
                         </div>
                         <div class="cart_btn">
+
+                            @if ($isCatering && $menu->stock <= 0)
+
+                                <button type="button" class="btn btn-secondary rounded-0" disabled>Stok Habis</button>
+
+                            @else
+
                             <button data-id="{{ $menu->id }}"
                                 data-name="{{ $menu->name }}"
                                 data-price="{{ $menu->price }}" 
                                 data-img_src="{{ asset('storage/' . $menu->image) }}"
-                                
-                                @if ($menu->category && $menu->category->name === 'Catering')
-                                type="button"  class="{{ $quantity==0 ? '':'d-none' }} btn btn-default rounded-0 add-to-cart"  >Tambah Keranjang</button>
-                                @endif
+                                type="button" 
+                                class="{{ $quantity==0 ? '':'d-none' }} btn btn-default rounded-0 add-to-cart">
+                                Tambah Keranjang
+
+                            @endif
 
                                 <button onclick="window.location.href='{{ route('customer.checkout') }}'" type="button" class="{{ $quantity == 0 ? 'd-none' : '' }} btn checkout-btn btn-secondary rounded-0">Proceed To CheckOut</button>
-
                         </div>
                     </div>
                     <hr />
@@ -215,6 +231,9 @@
                 <div class="medium_divider"></div>
             </div>
         </div>
+
+        @if (!($menu->category->name === 'Catering' || $menu->category->name === 'Katering'))
+
         <div class="row">
         	<div class="col-12">
             	<div class="heading_s1">
@@ -245,6 +264,9 @@
                 </div>
             </div>
         </div>
+
+        @endif
+
     </div>
 </div>
 <!-- END SECTION SHOP -->

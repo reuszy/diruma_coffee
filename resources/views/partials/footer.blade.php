@@ -27,7 +27,7 @@
         		</div>
                 <div class="col-xl-3 col-md-3 col-sm-12">
                 	<div class="widget">
-                        <h6 class="widget_title">Links</h6>
+                        <h6 class="widget_title">Tautan</h6>
                         <ul class="widget_links">
                             <li><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('menu') }}">Menu</a></li>

@@ -88,6 +88,7 @@ class MenuController extends Controller
      * @OA\Property(property="name", type="string", example=""),
      * @OA\Property(property="description", type="string", example=""),
      * @OA\Property(property="price", type="number", format="float", example=25000),
+     * @OA\Property(property="stock", type="integer", example=50),
      * @OA\Property(property="category_id", type="integer", example=1, description=""),
      * @OA\Property(property="image", type="string", format="binary", description="max 2MB")
      * )
@@ -186,6 +187,7 @@ class MenuController extends Controller
      * @OA\Property(property="name", type="string", example=""),
      * @OA\Property(property="description", type="string", example=""),
      * @OA\Property(property="price", type="number", format="float", example=25000),
+     * @OA\Property(property="stock", type="integer", example=50),
      * @OA\Property(property="category_id", type="integer", example=1),
      * @OA\Property(property="image", type="string", format="binary", description="Upload gambar baru jika ingin ganti")
      * )

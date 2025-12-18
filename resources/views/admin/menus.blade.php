@@ -36,6 +36,7 @@
             let name = $(this).data('name');
             let description = $(this).data('description');
             let price = $(this).data('price');
+            let stock = $(this).data('stock');
             let category_id = $(this).data('category_id');
             
             let actionUrl = "{{ route('admin.menus.update', ':id') }}".replace(':id', id);
@@ -43,6 +44,7 @@
             $('#editName').val(name);
             $('#editDescription').val(description);
             $('#editPrice').val(price);
+            $('#editStock').val(stock);
             $('#editCategory').val(category_id);
             $('#editForm').attr('action', actionUrl);
         });
@@ -107,6 +109,7 @@
                                         <th style="width:20%">Nama Menu</th>
                                         <th style="width:50%">Deskripsi</th>
                                         <th>Harga</th>
+                                        <th>Stok</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -119,12 +122,14 @@
                                             </td>
                                             <td>{{ $menu->description }}</td>
                                             <td>{!! $site_settings->currency_symbol !!}{{ $menu->price }}</td>
+                                            <td>{{ $menu->stock }}</td>
                                             <td>
                                                 <button class="m-1 btn btn-success btn-sm edit-btn"
                                                         data-id="{{ $menu->id }}"
                                                         data-name="{{ $menu->name }}"
                                                         data-description="{{ $menu->description }}"
                                                         data-price="{{ $menu->price }}"
+                                                        data-stock="{{ $menu->stock }}"
                                                         data-category_id="{{ $menu->category_id }}"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#editModal">
@@ -195,6 +200,10 @@
                         <label for="price" class="form-label">Price ({!! $site_settings->currency_symbol !!})</label>
                         <input type="number" step="0.01" name="price" class="form-control" id="price" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <input type="number" name="stock" class="form-control" id="stock" required>
+                    </div>
                     <div class="alert alert-danger" role="alert">
                         Recommended image size is <strong>500 x 400</strong>. Uploaded images will be cropped to Recommended size.
                     </div>
@@ -244,6 +253,10 @@
                     <div class="mb-3">
                         <label for="editPrice" class="form-label">Price ({!! $site_settings->currency_symbol !!})</label>
                         <input type="number" step="0.01" name="price" class="form-control" id="editPrice" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editStock" class="form-label">Stock</label>
+                        <input type="number" name="stock" class="form-control" id="editStock" required>
                     </div>
                     <div class="alert alert-danger" role="alert">
                         Recommended image size is <strong>500 x 400</strong>. Uploaded images will be cropped to Recommended size.

@@ -75,7 +75,7 @@
 @endpush
 
 
-@section('title', 'Blog Details')
+@section('title', 'Detail Jadwal')
 
 
 @section('header')
@@ -92,16 +92,16 @@
 @section('content')
 
  <!-- START SECTION BREADCRUMB -->
-<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/blog_detail_bg.jpg">
+<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/blog_diruma.png">
     <div class="container"><!-- STRART CONTAINER -->
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title">
-            		<h1>Blog</h1>
+            		<h1>Informasi Jadwal</h1>
                 </div>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Blog</li>
+                    <li class="breadcrumb-item active">Jadwal Katering</li>
                 </ol>
             </div>
         </div>
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <ul class="social_icons text-md-right">
-                                             <!-- Facebook Share -->
+                                             {{-- <!-- Facebook Share -->
                                             <li>
                                                 <a  class="sc_facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}" target="_blank">
                                                     <i class="ion-social-facebook"></i>
@@ -144,12 +144,12 @@
                                                 <a  class="sc_twitter" href="https://twitter.com/intent/tweet?url={{ urlencode(Request::url()) }}&text=Check+this+out!" target="_blank">
                                                     <i class="ion-social-twitter"></i>
                                                 </a>
-                                            </li>
+                                            </li> --}}
 
                                             
                                             <!-- WhatsApp Share -->
                                             <li>
-                                                <a class="btn-success" href="https://api.whatsapp.com/send?text=Check+this+out!+{{ urlencode(Request::url()) }}" target="_blank">
+                                                <a class="btn-success" href="https://api.whatsapp.com/send?text=Lihat+ini!+{{ urlencode(Request::url()) }}" target="_blank">
                                                     <i class="ion-social-whatsapp"></i>
                                                 </a>
                                             </li>

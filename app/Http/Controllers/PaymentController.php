@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Midtrans\Snap;
 use App\Models\Order;
 use App\Models\Customer;
+use App\Models\Menu;
 use App\Models\SiteSetting;
 
 class PaymentController extends Controller
@@ -37,6 +38,22 @@ class PaymentController extends Controller
 
         if (empty($cart_items)) {
             return redirect()->route('menu')->withErrors('Keranjang belanja Anda kosong.');
+        }
+
+        foreach($cart_items as $item) {
+            $menuCek = Menu::find($item['id']);
+
+            if (!$menuCek) {
+                return redirect()->route('catering')->withErrors(
+                    "Maaf, katering '{$item['name']} tidak ditemukan atau sudah dihapus."
+                );
+            }
+
+            if($menuCek->stock < $item['quantity']) {
+                return redirect()->route('catering')->withErrors(
+                    "Maaf, stok menu '{$item['name']}' tidak mencukupi. Sisa stok saat ini: {$menuCek->stock}"
+                );
+            }
         }
 
         $customerDetails = [
@@ -113,6 +130,11 @@ class PaymentController extends Controller
                     'quantity'  => $item['quantity'],
                     'subtotal'  => (float)$item['price'] * (int)$item['quantity'],
                 ]);
+
+                $menuToDeduct = Menu::find($item['id']);
+                if($menuToDeduct) {
+                    $menuToDeduct->decrement('stock', $item['quantity']);
+                }
             }
 
             $params = [
@@ -131,13 +153,11 @@ class PaymentController extends Controller
                     'other_qris',   // QRIS
                     'echannel',     // Mandiri
                 ],
-                // ----------------------------------------------------
             ];
 
             $response = Snap::createTransaction($params);
             $snapToken = $response->token;
 
-            // 8. Return View
             return view('customer.proccess-checkout', [
                 'snapToken'     => $snapToken,
                 'order'         => $order,

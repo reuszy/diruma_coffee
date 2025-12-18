@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg"> 
     <a class="navbar-brand" href="{{ route('home') }}">
-        <img class="logo_light" src="/assets/images/logo_diruma.png" alt="logo">
-        <img class="logo_dark" src="/assets/images/logo_diruma.png" alt="logo">
+        <img class="logo_light" src="/assets/images/logo_diruma_putih.png" alt="logo">
+        <img class="logo_dark" src="/assets/images/logo_diruma_putih.png" alt="logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false"> 
         <span class="ion-android-menu"></span>
@@ -10,7 +10,7 @@
         <ul class="navbar-nav">
             <li>  <a href="{{ route('home') }}" class="nav-link {{ Request::routeIs('home') ? 'active' : '' }}">Home</a> </li>
             <li>  <a href="{{ route('menu') }}" class="nav-link {{ Request::is('menu*') ? 'active' : '' }}">Menu</a> </li>
-            <li>  <a href="{{ route('blogs') }}" class="nav-link {{ Request::is('blog*') ? 'active' : '' }}">Berita</a> </li>
+            <li>  <a href="{{ route('blogs') }}" class="nav-link {{ Request::is('blog*') ? 'active' : '' }}">Jadwal</a> </li>
             <li>  <a href="{{ route('about') }}" class="nav-link {{ Request::routeIs('about') ? 'active' : '' }}">Tentang</a> </li>
             <li> <a href="{{ route('contact') }}" class="nav-link {{ Request::routeIs('contact') ? 'active' : '' }}">Kontak</a> </li>
 
@@ -38,7 +38,6 @@
     
     {{-- <div class="header_btn ml-1 ml-md-2"> 
         <a href="{{ route('catering') }}" class="btn btn-success rounded-0 btn-sm px-2">
-            
             <i class="fas fa-utensils d-none d-sm-inline mr-1"></i>
             KATERING
         </a>

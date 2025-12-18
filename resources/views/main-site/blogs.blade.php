@@ -76,7 +76,7 @@
 @endpush
 
 
-@section('title', 'Berita')
+@section('title', 'Jadwal')
 
 
 @section('header')
@@ -98,11 +98,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title">
-            		<h1>Berita</h1>
+            		<h1>Jadwal</h1>
                 </div>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Berita</li>
+                    <li class="breadcrumb-item active">Jadwal Katering</li>
                 </ol>
             </div>
         </div>
@@ -119,7 +119,7 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Cari berita..." value="{{ request('search') }}">
+                    <input type="text" name="search" class="form-control" placeholder="Cari jadwal katering..." value="{{ request('search') }}">
                       <div class="input-group-append">
                         <button type="submit" class="btn btn-sm btn-success"  ><i class="linearicons-magnifier"></i> Search</button>
                       </div>
@@ -133,7 +133,7 @@
                     {{ $blogs->total() === 1 ? 'hasil' : 'hasil' }} dari pencarian kamu 
                     <em>"{{ request('search') }}"</em>.
                     <hr/>
-                    <a href="{{ route('blogs') }}" class="btn-sm btn btn-success">Kembali ke Berita</a>
+                    <a href="{{ route('blogs') }}" class="btn-sm btn btn-success">Kembali ke Jadwal</a>
                 </div>
               @endif
                   
@@ -148,7 +148,7 @@
                                     <img src="{{ asset('storage/' . $blog->image) }}" alt="blog_small_img1">
                                 </a>
                                 <span class="post_date">
-                                    <strong>{{ $blog->created_at->format('d') }}</strong> {{ $blog->created_at->format('M') }}
+                                    <strong>{{ $blog->updated_at->format('d') }}</strong> {{ $blog->updated_at->format('M') }}
                                 </span>
                             </div>
                             <div class="blog_content">
@@ -163,7 +163,7 @@
                     @if(!request('search'))
                         <div class="col-12">                   
                             <div class="alert alert-warning text-center" role="alert">
-                                Yah gaada beritanya..
+                                Yah tidak ada jadwalnya..
                             </div>
                         </div>
                     @endif

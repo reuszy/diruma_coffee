@@ -66,7 +66,6 @@ Route::get('privacy-policy/', [MainSiteController::class, 'privacyPolicy'])->nam
 Route::get('terms-conditions/', [MainSiteController::class, 'termsConditions'])->name('terms.conditions');
 
 
-//Resetting Password
 Route::middleware(['guest'])->group(function () {
 
     // Customer account creation routes
