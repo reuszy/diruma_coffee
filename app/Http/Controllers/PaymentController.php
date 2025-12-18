@@ -137,6 +137,16 @@ class PaymentController extends Controller
                 }
             }
 
+            $address_payload = [
+                'first_name'   => $customer->name,
+                'email'        => $customer->email,
+                'phone'        => $customer->phone_number,
+                'address'      => $customer->address,
+                'city'         => $customerDetails['city'] ?? '', 
+                'postal_code'  => $customerDetails['postcode'] ?? '',
+                'country_code' => 'IDN'
+            ];
+
             $params = [
                 'transaction_details' => [
                     'order_id'     => $order_no,
@@ -146,6 +156,8 @@ class PaymentController extends Controller
                     'first_name' => $customer->name,
                     'email'      => $customer->email,
                     'phone'      => $customer->phone_number,
+                    'billing_address'   => $address_payload,
+                    'shipping_address'  => $address_payload
                 ],
                 'item_details' => $item_details,
 
@@ -209,6 +221,7 @@ class PaymentController extends Controller
                 'first_name' => Auth::user()->name,
                 'email'      => Auth::user()->email,
                 'phone'      => Auth::user()->phone_number ?? '',
+                'address'    => Customer::get('address')
             ],
 
             'item_details' => $item_details,

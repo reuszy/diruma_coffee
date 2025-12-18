@@ -134,6 +134,7 @@ class MenuController extends Controller
             'name'        => 'required|string|max:255',
             'description' => 'nullable|string',
             'price'       => 'required|numeric|min:0',
+            'stock'       => 'required|integer|min:0',
             'category_id'    => 'required|exists:categories,id',
             'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -151,6 +152,7 @@ class MenuController extends Controller
             'name'        => $request->name,
             'description' => $request->description,
             'price'       => $request->price,
+            'stock'       => $request->stock,
             'category_id'    => $request->category_id,
             'image'       => $imagePath,
             'is_available'=> true,       
@@ -233,6 +235,7 @@ class MenuController extends Controller
             'name'        => 'required|string|max:255',
             'description' => 'nullable|string',
             'price'       => 'required|numeric|min:0',
+            'stock'       => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -251,6 +254,7 @@ class MenuController extends Controller
             'name'          => $request->name,
             'description'   => $request->description,
             'price'         => $request->price,
+            'stock'       => $request->stock,
             'category_id'   => $request->category_id,
             'image'         => $imagePath,
         ]);

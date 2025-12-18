@@ -81,7 +81,42 @@
     </script>
     <script src="{{ asset('/assets/js/customer-cart-menu-route.js') }}"></script>
 
- 
+    <script>
+        $(document).ready(function() {
+            // Ambil info stok dari Database
+            // Kita gunakan logika if ternary PHP langsung di sini agar aman
+            var maxStock = {{ ($menu->category && ($menu->category->name === 'Catering' || $menu->category->name === 'Katering')) ? $menu->stock : 99999 }};
+
+            // 1. CEGAH TOMBOL PLUS (+) MELEBIHI STOK
+            $('.plus').on('click', function(e) {
+                var input = $(this).closest('.quantity').find('.quantity-input');
+                
+                // Beri jeda sedikit agar value terupdate dulu oleh script bawaan template
+                setTimeout(function(){
+                    var currentVal = parseInt(input.val());
+                    if(currentVal > maxStock) {
+                        alert('Maaf, stok hanya tersedia ' + maxStock + ' porsi!');
+                        input.val(maxStock);
+                    }
+                }, 100); 
+            });
+
+            // 2. CEGAH TOMBOL "TAMBAH KERANJANG" JIKA MELEBIHI STOK
+            $('.add-to-cart').on('click', function(e) {
+                var input = $(this).closest('.cart_extra').find('.quantity-input');
+                var qty = parseInt(input.val());
+                
+                if(qty > maxStock) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation(); // Matikan proses AJAX ke cart
+                    alert('Tidak bisa memesan melebihi stok yang tersedia (' + maxStock + ' porsi).');
+                    return false;
+                }
+            });
+        });
+    </script>
+    {{-- SELESAI SCRIPT --}}
+
 @endpush
 
 
@@ -164,7 +199,23 @@
                         <div class="cart-product-quantity">
                             <div class="quantity {{ $quantity==0? 'd-none':'' }}"  >
                                 <input type="button" value="-" class="minus">
-                                <input type="text" min="0" name="quantity" value="{{ $quantity }}" title="Qty" class="qty quantity-input" size="4" data-id="{{ $menu->id }}">
+                                <input type="text" 
+                                    min="1" 
+                                    name="quantity" 
+                                    value="{{ $quantity > 0 ? $quantity : 1 }}" 
+                                    class="qty quantity-input" 
+                                    size="4" 
+                                    data-id="{{ $menu->id }}"
+
+                                    @if($isCatering)
+                                        max="{{ $menu->stock }}"
+                                        oninput="if(parseInt(this.value) > {{ $menu->stock }}) { 
+                                            alert('Maaf, stok hanya tersedia {{ $menu->stock }} porsi!'); 
+                                            this.value = {{ $menu->stock }}; 
+                                        }"
+                                    @endif
+                                >
+                                {{-- <input type="text" min="0" name="quantity" value="{{ $quantity }}" title="Qty" class="qty quantity-input" size="4" data-id="{{ $menu->id }}"> --}}
                                 <input type="button" value="+" class="plus">
                             </div>
                         </div>

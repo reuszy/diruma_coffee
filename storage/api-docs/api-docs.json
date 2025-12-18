@@ -652,12 +652,7 @@
                     "401": {
                         "description": "Token Salah / Tidak Ada"
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
+                }
             },
             "post": {
                 "tags": [
@@ -689,6 +684,10 @@
                                         "type": "number",
                                         "format": "float",
                                         "example": 25000
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": 50
                                     },
                                     "category_id": {
                                         "description": "",
@@ -863,6 +862,10 @@
                                         "type": "number",
                                         "format": "float",
                                         "example": 25000
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": 50
                                     },
                                     "category_id": {
                                         "type": "integer",
