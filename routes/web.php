@@ -23,7 +23,7 @@ use App\Http\Controllers\Admin\GeneralSettingsController;
 use App\Http\Controllers\Admin\TermsAndConditionController;
 use App\Http\Controllers\Admin\TableBookingController as AdminTableBookingController;
 use App\Http\Controllers\CateringController;
-
+use App\Http\Controllers\GoogleController;
 
 Route::get('/', [MainSiteController::class, 'home'])->name('home');
 
@@ -76,6 +76,9 @@ Route::middleware(['guest'])->group(function () {
     Route::get('auth/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('auth/process-login/', [AuthController::class, 'login'])->name('auth.login.process');
 
+    // Google login
+    Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('auth.google');
+    Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
     // activate route
     Route::get('auth/activate-link-request', [AuthController::class, 'requestActivationLink'])->name('auth.activate.link.request');

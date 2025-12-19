@@ -17,6 +17,7 @@ class User extends Authenticatable implements CanResetPassword, JWTSubject
         'last_name',
         'email',
         'password',
+        'google_id',
         'role',
         'status',
         'notice',

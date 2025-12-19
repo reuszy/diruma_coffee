@@ -158,9 +158,37 @@
                                 </div>
 
                                 <!-- Submission -->
-                                <div class="form-group mb-0 mt-2 col-md-12">
-                                    <button type="submit" class="btn btn-default btn-block">Login</button>
+                                <button type="submit" class="btn btn-default btn-block rounded-pill font-weight-bold">
+                                    LOGIN
+                                </button>
+
+                                <div class="form-group mb-0 mt-4 col-md-12">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="flex-grow-1 bg-light" style="height: 1px;"></div>
+                                        <span class="text-muted small px-3 text-uppercase font-weight-bold" style="letter-spacing: 1px;">Atau Masuk Dengan</span>
+                                        <div class="flex-grow-1 bg-light" style="height: 1px;"></div>
+                                    </div>
+
+                                    <a href="{{ route('auth.google') }}" 
+                                    class="btn btn-block rounded-pill py-2 shadow-sm d-flex align-items-center justify-content-center position-relative google-btn-hover"
+                                    style="background: white; border: 1px solid #eee; transition: all 0.3s ease;">
+                                        
+                                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="24" height="24" class="mr-3">
+                                        
+                                        <span class="font-weight-bold text-dark" style="font-size: 15px; letter-spacing: 0.5px;">
+                                            Masuk dengan Google
+                                        </span>
+                                    </a>
                                 </div>
+
+                                <style>
+                                    .google-btn-hover:hover {
+                                        transform: translateY(-3px); /* Efek tombol naik sedikit */
+                                        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important; /* Bayangan halus futuristik */
+                                        border-color: #fff !important;
+                                        background: #fff !important;
+                                    }
+                                </style>
 
                                 <!-- Login Link -->
                                 <div class="form-group mb-0 mt-2 col-md-12">
