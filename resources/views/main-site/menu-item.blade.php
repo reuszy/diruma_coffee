@@ -120,7 +120,7 @@
 @endpush
 
 
-@section('title', 'Menu Details')
+@section('title', 'Detail Menu')
 
 
 @section('header')
@@ -191,7 +191,7 @@
 
                         </div>
                         <ul class="product-meta">
-                            <li>Category:  {{ $menu->category->name }}</li>
+                            <li>Kategori:  {{ $menu->category->name }}</li>
                         </ul>
                     </div>
                     <hr />
@@ -237,7 +237,7 @@
 
                             @endif
 
-                                <button onclick="window.location.href='{{ route('customer.checkout') }}'" type="button" class="{{ $quantity == 0 ? 'd-none' : '' }} btn checkout-btn btn-secondary rounded-0">Proceed To CheckOut</button>
+                                <button onclick="window.location.href='{{ route('customer.checkout') }}'" type="button" class="{{ $quantity == 0 ? 'd-none' : '' }} btn checkout-btn btn-default rounded-0">Proses Checkout</button>
                         </div>
                     </div>
                     <hr />

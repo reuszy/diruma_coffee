@@ -157,19 +157,19 @@
                             <input class="form-control" required type="text" name="address" value="{{ old('address') }}" placeholder="Alamat *">
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <input class="form-control" required type="text" name="city" value="{{ old('city') }}" placeholder="Kota *">
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-5">
                             <input class="form-control" required type="text" name="state" value="Indonesia" placeholder="Negara *" readonly>
                         </div>
 
-                        <div class="form-group col-md-6">
+                        {{-- <div class="form-group col-md-6">
                             <input class="form-control" type="text" name="county" value="{{ old('county') }}" placeholder="Provinsi (Opsional)">
-                        </div>
+                        </div> --}}
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-7">
                             <input class="form-control" required type="text" name="postcode" value="{{ old('postcode') }}" placeholder="Kode POS *">
                         </div>
 

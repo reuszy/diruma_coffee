@@ -19,12 +19,40 @@ class MidtransCallbackController extends Controller
         try {
             $notif = new Notification();
 
+            $grossAmount = $notif->gross_amount;
+            $serverKey = config('midtrans.serverKey');
+            $signatureKey = $notif->signature_key;
+            $statusCode = $notif->status_code;
+            $orderId = $notif->order_id;
+
+            $mySignature = hash("sha512", $orderId . $statusCode . $grossAmount . $serverKey);
+
+            if($signatureKey !== $mySignature) {
+                return response()->json([
+                    'message' => 'Invalid Signature'
+                ], 403);
+            }
+
+            $parts = explode('-', $orderId);
+            $fixOrderId = $parts[0] . '-' . $parts[1];
+
             $transaction = $notif->transaction_status;
             $type = $notif->payment_type;
-            $order_id = $notif->order_id;
             $fraud = $notif->fraud_status;
 
-            $order = Order::where('order_no', $order_id)->first();
+            $paymentMethod = 'Midtrans';
+
+            if($type == 'gopay' || $type == 'qris') {
+
+                $paymentMethod = 'QRIS';
+
+            } else if($type == 'echannel') {
+
+                $paymentMethod = 'Mandiri VA';
+
+            }
+
+            $order = Order::where('order_no', $fixOrderId)->first();
 
             if (!$order) {
                 return response()->json(['message' => 'Order not found'], 404);
@@ -33,15 +61,23 @@ class MidtransCallbackController extends Controller
             if ($transaction == 'capture') {
                 if ($type == 'credit_card') {
                     if ($fraud == 'challenge') {
-                        $order->update(['status_online_pay' => 'unpaid']);
+                        $order->update([
+                            'status_online_pay' => 'unpaid',
+                            'payment_method'    => $paymentMethod
+                        ]);
                     } else {
-                        $order->update(['status_online_pay' => 'paid', 'status' => 'completed']);
+                        $order->update([
+                            'status_online_pay' => 'paid',
+                            'status' => 'completed',
+                            'payment_method'    => $paymentMethod
+                        ]);
                     }
                 }
             } else if ($transaction == 'settlement') {
                 $order->update([
                     'status_online_pay' => 'paid',
-                    'status' => 'pending'
+                    'status' => 'pending',
+                    'payment_method'    => $paymentMethod
                 ]);
             } else if ($transaction == 'pending') {
                 $order->update(['status_online_pay' => 'unpaid']);

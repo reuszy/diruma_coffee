@@ -102,9 +102,11 @@ class PaymentController extends Controller
                 'name'         => $customerDetails['name'] ?? 'Guest',
                 'email'        => $customerDetails['email'] ?? 'noemail@example.com',
                 'phone_number' => $customerDetails['phone_number'] ?? '0000000000',
-                'address'      => trim(($customerDetails['address'] ?? '') . ' ' . 
-                                     ($customerDetails['city'] ?? '') . ' ' . 
-                                     ($customerDetails['postcode'] ?? '')),
+                'address'      => implode(', ', array_filter([
+                                    $customerDetails['address'] ?? null,
+                                    $customerDetails['city'] ?? null,
+                                    $customerDetails['postcode'] ?? null
+                ])),
             ]);
 
             $loggedInUserId = Auth::id();
@@ -211,17 +213,22 @@ class PaymentController extends Controller
 
         \Midtrans\Config::$overrideNotifUrl = 'https://diruma.reuszy.site/api/midtrans-callback';
 
+        $customerUser = Customer::find($order->customer_id);
+        $user = Auth::user(); 
+
+        $new_midtrans_id = $order->order_no . '-' . time();
+
         $params = [
             'transaction_details' => [
-                'order_id'     => $order->order_no,
+                'order_id'     => $new_midtrans_id,
                 'gross_amount' => (int)$order->total_price,
             ],
 
             'customer_details' => [
-                'first_name' => Auth::user()->name,
-                'email'      => Auth::user()->email,
-                'phone'      => Auth::user()->phone_number ?? '',
-                'address'    => Customer::get('address')
+                'first_name' => $user->name,
+                'email'      => $user->email,
+                'phone'      => $user->phone_number,
+                'address'    => $customerUser ? $customerUser->address : '',
             ],
 
             'item_details' => $item_details,

@@ -12,6 +12,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Controllers\Traits\CartTrait;
 use App\Http\Controllers\Traits\OrderNumberGeneratorTrait;
 use App\Http\Controllers\Traits\MainSiteViewSharedDataTrait;
+use App\Models\Menu;
 
 class CustomerController extends Controller
 {
@@ -26,8 +27,8 @@ class CustomerController extends Controller
     {
         $this->shareMainSiteViewData();
     }
-    
-    // Show the customer dashboard
+
+
     public function dashboard()
     {
         $userId = Auth::id();
@@ -39,19 +40,28 @@ class CustomerController extends Controller
         return view('customer.dashboard', compact('orders'));
     }
 
-    // Show the account creation form
+
+    public function show($id)
+    {
+        $userId = Auth::id();
+
+        $order = Order::where('created_by_user_id', $userId)
+                        ->where('id', $id)
+                        ->firstOrFail();
+
+        return view('customer.order-details', compact('order'));
+    }
+
     public function create()
     {
         return view('customer.create-account');
     }
 
-    // Store a new customer
+
     public function store(Request  $request)
     {
-        // user role as customer
         $request->merge(['role' => 'customer']);
 
-        // Validate using CreateUserRequest rules
         $validated = app(CreateUserRequest::class)->validateResolved();
 
         $user = User::create([
@@ -68,10 +78,11 @@ class CustomerController extends Controller
 
         if ($user) {
             $message = ['success' => 'Account created successfully. You can now log in.'];
-            // auth::login($user);
+
             return redirect()->route('login')->with($message);
         } else {
             $message = ['error' => 'Failed to create account. Please try again.'];
+
             return redirect()->back()->withInput()->with($message);
         }
 

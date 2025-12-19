@@ -206,7 +206,7 @@
 @endpush
 
 
-@section('title', 'Cart')
+@section('title', 'Keranjang')
 
 
 @section('header')
@@ -251,11 +251,11 @@
                     	<thead>
                         	<tr>
                             	<th class="product-thumbnail">&nbsp;</th>
-                                <th class="product-name">Product</th>
-                                <th class="product-price">Price</th>
-                                <th class="product-quantity">Quantity</th>
+                                <th class="product-name">Produk</th>
+                                <th class="product-price">Subtotal</th>
+                                <th class="product-quantity">Qty</th>
                                 <th class="product-subtotal">Total</th>
-                                <th class="product-remove">Remove</th>
+                                <th class="product-remove">Hapus</th>
                             </tr>
                         </thead>
                         <tbody id="cart-container">
@@ -273,7 +273,7 @@
                                   
                                     	</div>
                                         <div class="col-lg-8 col-md-6 text-left text-md-right">
-                                            <button id="clear-cart"  class="btn btn-dark btn-sm" type="submit">Clear Cart</button>
+                                            <button id="clear-cart"  class="btn btn-dark btn-sm" type="submit">Hapus</button>
                                         </div>
                                     </div>
                                 </td>
@@ -303,13 +303,13 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td class="cart_total_label">Cart Subtotal</td>
+                                    <td class="cart_total_label">Subtotal Pesanan</td>
                                     <td class="cart_total_amount" id="cart-subtotal">{!! $site_settings->currency_symbol !!}0.00</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <a href="{{ route('customer.checkout') }}" class="btn btn-default">Proceed To CheckOut</a>
+                    <a href="{{ route('customer.checkout') }}" class="btn btn-default">Proses Checkout</a>
 
                 </div>
             </div>

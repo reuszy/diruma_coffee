@@ -75,7 +75,7 @@
 @endpush
 
 
-@section('title', 'Menus')
+@section('title', 'Menu')
 
 
 @section('header')

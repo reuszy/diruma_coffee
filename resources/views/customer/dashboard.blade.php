@@ -31,7 +31,7 @@
 
 @section('content')
 
-<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/checkout_bg.jpg">
+<div class="breadcrumb_section background_bg overlay_bg_50 page_title_light" data-img-src="/assets/images/blog_diruma.png">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -136,9 +136,9 @@
                                                         <i class="fa fa-credit-card"></i> Bayar
                                                     </button>
                                                 </form>
-                                            {{-- @else
-                                                <a href="#" class="btn btn-primary btn-sm" title="Lihat Detail">
-                                                    <i class="fa fa-eye"></i> Detail --}}
+                                            @else
+                                                <a href="{{ route('customer.detail', $order->id) }}" class="btn btn-primary btn-sm" title="Lihat Detail">
+                                                    <i class="fa fa-eye"></i> Detail
                                                 </a>
                                             @endif
                                         </td>

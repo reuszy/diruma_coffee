@@ -33,7 +33,7 @@ Route::get('menu/', [MainSiteController::class, 'menu'])->name('menu');
 Route::get('menu-item/{id}', [MainSiteController::class, 'menuItem'])->name('menu.item');
 
 //Catering
-Route::get('/catering', [App\Http\Controllers\MainSiteController::class, 'cateringPage'])->name('catering');
+Route::get('/catering', [MainSiteController::class, 'cateringPage'])->name('catering');
 
 // Customer Cart 
 Route::get('cart/', [MainSiteController::class, 'cart'])->name('customer.cart');
@@ -99,7 +99,8 @@ Route::middleware(['auth'])->group(function () {
 
 //Customer Dashboard routes
 Route::prefix('customer')->middleware(CheckRoleCustomer::class)->group(function () {
-     Route::get('/', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
+     Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
+     Route::get('/detail/{id}', [CustomerController::class, 'show'])->name('customer.detail');
 });
 
 
