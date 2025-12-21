@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\TestimonyController;
+use App\Http\Controllers\Api\UserController;
 
 // GRUP PUBLIC
 Route::group(['prefix' => 'auth'], function () {
@@ -26,6 +27,10 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'auth'], function () {
 
 // GRUP PROTECTED DATA 
 Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::delete('users/{id}', [UserController::class, 'destroy']);
+
     Route::get('/orders', [OrderController::class, 'index']);
     Route::get('/orders/{id}', [OrderController::class, 'show']);
 
