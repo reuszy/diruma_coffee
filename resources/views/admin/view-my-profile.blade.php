@@ -45,7 +45,7 @@
 
       <div class="card card-info">
         <div class="card-header">
-            <i class="fa fa-user"></i> My Profile
+            <i class="fa fa-user"></i> Profil Saya
         </div>
         <div class="card-body">
             <div class="d-flex justify-content-center align-items-center">
@@ -81,11 +81,11 @@
                         <td>{{ ucwords(str_replace('_', ' ', $user->role)) }}</td>
                     </tr>
                     <tr>
-                        <td><b>Phone Number:</b></td>
+                        <td><b>No. Telepon:</b></td>
                         <td>{{ $user->phone_number ?? 'N/A' }}</td>
                     </tr>
                     <tr>
-                        <td><b>Address:</b></td>
+                        <td><b>Alamat:</b></td>
                         <td>{{ $user->address ?? 'N/A' }}</td>
                     </tr>
                 </tbody>
@@ -93,8 +93,8 @@
             
         </div>
         <div class="card-footer">
-            <button type="button" onclick="window.location='{{ route('admin.myprofile.edit') }}'" class="btn btn-info">Edit My Profile</button>
-            <button type="button" onclick="window.location='{{ route('admin.dashboard') }}'" class="btn btn-primary float-right">Dashboard</button>
+            <button type="button" onclick="window.location='{{ route('admin.myprofile.edit') }}'" class="btn btn-secondary">Edit Profil</button>
+            <button type="button" onclick="window.location='{{ route('admin.dashboard') }}'" class="btn btn-success float-right">Dashboard</button>
         </div>
     </div>
 

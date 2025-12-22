@@ -52,6 +52,21 @@
     }
 
 
+    function deleteUser(id) {
+        // 1. Siapkan URL route delete (ganti :id dengan ID user)
+        // Pastikan route 'admin.users.destroy' sudah ada di web.php Anda
+        var actionUrl = "{{ route('admin.users.destroy', ':id') }}";
+        actionUrl = actionUrl.replace(':id', id);
+
+        // 2. Masukkan URL tersebut ke action form modal
+        $('#deleteUserForm').attr('action', actionUrl);
+
+        // 3. Tampilkan Modal secara manual
+        var deleteModal = new bootstrap.Modal(document.getElementById('deleteUserModal'));
+        deleteModal.show();
+    }
+
+
     // Attach event listener to the modal
     $('#viewUserModal').on('show.bs.modal', function (event) {
         // Button that triggered the modal
@@ -88,7 +103,7 @@
 @endpush
 
 
-@section('title', 'Admin - Manage Users')
+@section('title', 'Admin - Daftar Akun')
 
 
 
@@ -102,19 +117,19 @@
  
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Manage Admin ({{ $users->count() }})</span>
-            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#createUserModal">Add Admin</button>
+            <span>Management Akun ({{ $users->count() }})</span>
+            <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#createUserModal">Tambah Akun</button>
         </div>
         <div class="card-body">
             @if($users->isEmpty())
                 <div class="alert alert-warning" role="alert">
-                    No admin records found.
+                    Tidak ada akun admin
                 </div>
             @else
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Email</th>
                             <th>Role</th>
                             <th>Status</th>
@@ -137,7 +152,7 @@
                                 </td>
                                 <td>
                                     <button 
-                                    class="btn btn-primary btn-sm" 
+                                    class="btn btn-info btn-sm" 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#viewUserModal" 
                                     data-first_name="{{ $user->first_name }}" 
@@ -166,6 +181,13 @@
                                     onclick="editUser(this)">
                                     <i class='fa fa-edit'></i>
                                     </button>
+
+                                    <button 
+                                        class="btn btn-danger btn-sm" 
+                                        onclick="deleteUser({{ $user->id }})"
+                                        title="Hapus User">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
                                                            
                                 </td>
                             </tr>
@@ -175,18 +197,6 @@
             @endif
         </div>
     </div>
-    
-   
- 
-
-
-
-
-
-
-
-
-
 
 
 <!-- Create User Modal -->
@@ -196,23 +206,19 @@
             <form method="POST" action="{{ route('admin.users.store') }}">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title">Create Admin</h5>
+                    <h5 class="modal-title">Tambah Akun</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger" role="alert">
-                        <i class="fa fa-exclamation-triangle"></i> The password will be the user's email address. The user should log in with this credential and change their password to gain access to the admin panel.
+                        <i class="fa fa-exclamation-triangle"></i> Password Akun baru sama dengan Alamat Email nya.
                     </div>
                     <div class="mb-3">
-                        <label>First Name</label>
+                        <label>Nama Depan</label>
                         <input type="text" name="first_name" id="FirstName" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label>Middle Name</label>
-                        <input type="text" name="middle_name" id="MiddleName" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label>Last Name</label>
+                        <label>Nama Belakang</label>
                         <input type="text" name="last_name" id="LastName" class="form-control" required>
                     </div>
                     <div class="mb-3">
@@ -222,6 +228,7 @@
                     <div class="mb-3">
                         <label>Role</label>
                         <select name="role" class="form-control form-control-sm" required>
+                            <option value="customer">Customer</option>
                             <option value="admin">Admin</option>
                             <option value="global_admin">Global Admin</option>
                         </select>
@@ -229,15 +236,13 @@
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-secondary">Buat Akun</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-
 
 
 <!-- Edit User Modal -->
@@ -248,20 +253,20 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit User</h5>
+                    <h5 class="modal-title">Edit Akun</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label>First Name</label>
+                        <label>Nama Depan</label>
                         <input type="text" name="first_name" id="editFirstName" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label>Middle Name</label>
+                        <label>Nama Tengah</label>
                         <input type="text" name="middle_name" id="editMiddleName" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label>Last Name</label>
+                        <label>Nama Belakang</label>
                         <input type="text" name="last_name" id="editLastName" class="form-control" required>
                     </div>
                     <div class="mb-3">
@@ -271,20 +276,21 @@
                     <div class="mb-3">
                         <label>Role</label>
                         <select name="role" id="editRole" class="form-control form-control-sm form-select" required>
+                            <option value="customer">Customer</option>
                             <option value="admin">Admin</option>
                             <option value="global_admin">Global Admin</option>
                         </select>
                     </div>
-                    <div class="form-check form-check-flat form-check-primary" id="banCheckboxDiv">
+                    {{-- <div class="form-check form-check-flat form-check-primary" id="banCheckboxDiv">
                         <label class="form-check-label" for="banCheckbox">
                             <input type="checkbox" class="form-check-input" id="banCheckbox" name="ban"> Ban User
                             <i class="input-helper"></i>
                         </label>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-secondary">Update</button>
                 </div>
             </form>
         </div>
@@ -292,14 +298,39 @@
 </div>
 
 
-
+<!-- Delete User Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="deleteUserForm" method="POST">
+                @csrf
+                @method('DELETE')
+                
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">
+                        <i class="fa fa-exclamation-triangle"></i> Konfirmasi Hapus
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus user ini secara permanen?</p>
+                    <p class="text-muted small">Tindakan ini tidak dapat dibatalkan.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <div class="modal fade" id="viewUserModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">View User Details</h5>
+                <h5 class="modal-title">Lihat Detail Akun</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -312,15 +343,15 @@
                 </div>
                 <table class="table table-bordered">
                     <tr>
-                        <th>First Name</th>
+                        <th>Nama Depan</th>
                         <td id="viewFirstName"></td>
                     </tr>
                     <tr>
-                        <th>Middle Name</th>
+                        <th>Nama Tengah</th>
                         <td id="viewMiddleName"></td>
                     </tr>
                     <tr>
-                        <th>Last Name</th>
+                        <th>Nama Belakang</th>
                         <td id="viewLastName"></td>
                     </tr>                    
                     <tr>
@@ -336,11 +367,11 @@
                         <td id="viewStatus"></td>
                     </tr>
                     <tr>
-                        <th>Phone Number</th>
+                        <th>No. Telp</th>
                         <td id="viewPhoneNumber"></td>
                     </tr>
                     <tr>
-                        <th>Address</th>
+                        <th>Alamat</th>
                         <td id="viewAddress"></td>
                     </tr>
 
@@ -353,11 +384,6 @@
     </div>
 </div>
 
-
-
-
-
-
    
     </div>
     <!-- content-wrapper ends -->
@@ -365,7 +391,3 @@
   </div>
   <!-- main-panel ends -->
 @endsection
-
-
-
- 

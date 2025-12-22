@@ -106,7 +106,7 @@
 @endpush
 
 
-@section('title', 'Admin - Settings - Categories')
+@section('title', 'Admin - Reservasi')
 
 
 
@@ -124,16 +124,16 @@
 
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Manage Table Bookings ({{ $tableBookings->count() }})</span>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#createModal">Create Booking</button>
+            <span>Management Reservasi ({{ $tableBookings->count() }})</span>
+            <button class="btn btn-secondary" data-toggle="modal" data-target="#createModal">Tambah Reservasi</button>
         </div>
         <div class="card-body">
             <table class="table"  id="orders-table">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Nama</th>
                         <th>Email</th>
-                        <th>Date Time</th>
+                        <th>Waktu & Tanggal</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -179,7 +179,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center">No table bookings.</td>
+                            <td colspan="7" class="text-center">Tidak ada Reservasi</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -199,14 +199,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="viewModalLabel">View Booking</h5>
+                <h5 class="modal-title" id="viewModalLabel">Detail Reservasi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="viewName">Name</label>
+                    <label for="viewName">Nama</label>
                     <input type="text" class="form-control" id="viewName" readonly>
                 </div>
                 <div class="form-group">
@@ -214,24 +214,24 @@
                     <input type="email" class="form-control" id="viewEmail" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="viewPhone">Phone</label>
+                    <label for="viewPhone">No. Telepon</label>
                     <input type="text" class="form-control" id="viewPhone" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="viewDate">Date</label>
+                    <label for="viewDate">Tanggal</label>
                     <input type="date" class="form-control" id="viewDate" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="viewTime">Time</label>
+                    <label for="viewTime">Jam</label>
                     <input type="text" class="form-control" id="viewTime" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="viewPersons">Persons</label>
+                    <label for="viewPersons">Pax</label>
                     <input type="number" class="form-control" id="viewPersons" readonly>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -247,14 +247,14 @@
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createModalLabel">Create Booking</h5>
+                    <h5 class="modal-title" id="createModalLabel">Tambah Reservasi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Nama</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="form-group">
@@ -262,25 +262,25 @@
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
+                        <label for="phone">No. Telp</label>
                         <input type="text" class="form-control" id="phone" name="phone" required>
                     </div>
                     <div class="form-group">
-                        <label for="date">Date</label>
+                        <label for="date">Tanggal</label>
                         <input type="date" class="form-control" id="date" name="date" required>
                     </div>
                     <div class="form-group">
-                        <label for="time">Time</label>
+                        <label for="time">Jam</label>
                         <input type="text" class="form-control" id="time" name="time" required>
                     </div>
                     <div class="form-group">
-                        <label for="persons">Persons</label>
+                        <label for="persons">Pax</label>
                         <input type="number" class="form-control" id="persons" name="persons" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Create Booking</button>
+                    <button type="submit" class="btn btn-primary">Buat Reservasi</button>
                 </div>
             </div>
         </form>
@@ -297,14 +297,14 @@
             @method('PUT')
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Booking</h5>
+                    <h5 class="modal-title" id="editModalLabel">Edit Reservasi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="editName">Name</label>
+                        <label for="editName">Nama</label>
                         <input type="text" class="form-control" id="editName" name="name" required>
                     </div>
                     <div class="form-group">
@@ -312,25 +312,25 @@
                         <input type="email" class="form-control" id="editEmail" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="editPhone">Phone</label>
+                        <label for="editPhone">No. Telepon</label>
                         <input type="text" class="form-control" id="editPhone" name="phone" required>
                     </div>
                     <div class="form-group">
-                        <label for="editDate">Date</label>
+                        <label for="editDate">Tanggal</label>
                         <input type="date" class="form-control" id="editDate" name="date" required>
                     </div>
                     <div class="form-group">
-                        <label for="editTime">Time</label>
+                        <label for="editTime">Jam</label>
                         <input type="text" class="form-control" id="editTime" name="time" required>
                     </div>
                     <div class="form-group">
-                        <label for="editPersons">Persons</label>
+                        <label for="editPersons">Pax</label>
                         <input type="number" class="form-control" id="editPersons" name="persons" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update Booking</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-secondary">Update</button>
                 </div>
             </div>
         </form>
@@ -346,18 +346,18 @@
             @method('DELETE')
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete Booking</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Hapus Reservasi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete this booking?</p>
+                    <p>Yakin ingin menghapus Reservasi?</p>
                     <p id="deleteName"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Delete Booking</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
                 </div>
             </div>
         </form>

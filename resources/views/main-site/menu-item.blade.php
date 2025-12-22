@@ -136,7 +136,7 @@
 @section('content')
 
 @php
-    $isCatering = $menu->category && ($menu->category->name === 'Catering' || $menu->category->name === 'Katering');
+    $isCatering = $menu->category->name === 'Catering' || $menu->category->name === 'Katering';
 @endphp
 
  <!-- START SECTION BREADCRUMB -->
@@ -215,26 +215,30 @@
                                         }"
                                     @endif
                                 >
-                                {{-- <input type="text" min="0" name="quantity" value="{{ $quantity }}" title="Qty" class="qty quantity-input" size="4" data-id="{{ $menu->id }}"> --}}
                                 <input type="button" value="+" class="plus">
                             </div>
                         </div>
                         <div class="cart_btn">
 
-                            @if ($isCatering && $menu->stock <= 0)
+                            @if ($isCatering)
 
-                                <button type="button" class="btn btn-secondary rounded-0" disabled>Stok Habis</button>
+                                @if ($menu->stock <= 0)
+                                    <button type="button" class="btn btn-secondary rounded-0" disabled>Stok Habis</button>
+                                @else
+                                    <button data-id="{{ $menu->id }}"
+                                        data-name="{{ $menu->name }}"
+                                        data-price="{{ $menu->price }}" 
+                                        data-img_src="{{ asset('storage/' . $menu->image) }}"
+                                        type="button" 
+                                        class="{{ $quantity==0 ? '':'d-none' }} btn btn-default rounded-0 add-to-cart">
+                                        Tambah Keranjang
+                                    </button>
+                                @endif
 
                             @else
-
-                            <button data-id="{{ $menu->id }}"
-                                data-name="{{ $menu->name }}"
-                                data-price="{{ $menu->price }}" 
-                                data-img_src="{{ asset('storage/' . $menu->image) }}"
-                                type="button" 
-                                class="{{ $quantity==0 ? '':'d-none' }} btn btn-default rounded-0 add-to-cart">
-                                Tambah Keranjang
-
+                                {{-- JIKA BUKAN KATERING: TIDAK MUNCUL APA-APA (KOSONG) --}}
+                                {{-- Atau opsional: Bisa kasih info teks --}}
+                                <span class="badge badge-info p-2">Menu ini hanya tersedia Dine-in</span>
                             @endif
 
                                 <button onclick="window.location.href='{{ route('customer.checkout') }}'" type="button" class="{{ $quantity == 0 ? 'd-none' : '' }} btn checkout-btn btn-default rounded-0">Proses Checkout</button>

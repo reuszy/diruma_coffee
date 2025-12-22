@@ -80,7 +80,7 @@
 @endpush
 
 
-@section('title', 'Admin - Blog')
+@section('title', 'Admin - Jadwal Katering')
 
 
 
@@ -95,17 +95,17 @@
 
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span>Blog ({{ $blogs->count() }})</span>
-                <button class="btn btn-sm btn-primary" onclick="window.location.href='{{ route('admin.blog.create') }}'">
-                    Create New Blog
+                <span>Jadwal Katering ({{ $blogs->count() }})</span>
+                <button class="btn btn-sm btn-secondary" onclick="window.location.href='{{ route('admin.blog.create') }}'">
+                    Buat Jadwal Baru
                 </button>                
             </div>
             <div class="card-body table-responsive">
                 <table class="table" id="orders-table">
                     <thead>
                         <tr>
-                            <th scope="col">Blog Name</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Tanggal</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>

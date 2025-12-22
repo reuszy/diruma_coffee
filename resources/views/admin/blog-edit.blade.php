@@ -120,7 +120,7 @@
 @endpush
 
 
-@section('title', 'Admin - Blog')
+@section('title', 'Admin - Buat Jadwal')
 
 
 
@@ -135,23 +135,23 @@
 
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <b>Edit Blog</b>
-            <button class="btn btn-inverse-dark btn-fw btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $blog->id }}" data-name="{{ $blog->name }}">Delete Blog</button>
+            <b>Edit Jadwal</b>
+            <button class="btn btn-danger btn-fw btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $blog->id }}" data-name="{{ $blog->name }}">Hapus Jadwal</button>
         </div>
         <form action="{{ route('admin.blog.update', $blog->id) }}" method="POST" id="editForm" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body">
                 <div class="mb-3">
-                    <label for="editName" class="form-label"><b>Blog Name</b></label>
+                    <label for="editName" class="form-label"><b>Judul</b></label>
                     <input type="text" class="form-control" id="editName" name="name" value="{{ old('name', $blog->name) }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="editContent" class="form-label"><b>Content</b></label>
+                    <label for="editContent" class="form-label"><b>Konten</b></label>
                     <textarea id="summernote" class="form-control" id="editContent" name="content" rows="5" required>{{ old('content', $blog->content) }}</textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="editImage" class="form-label"><b>Image</b></label>
+                    <label for="editImage" class="form-label"><b>Foto Menu</b></label>
                     <input type="file" class="form-control" id="editImage" name="image">
                 </div>
                 <hr/>
@@ -173,8 +173,8 @@
                 </table>
             </div>
             <div class="card-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('admin.blog.index') }}'">Back</button>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='{{ route('admin.blog.index') }}'">Batal</button>
+                <button type="submit" class="btn btn-secondary">Simpan</button>
             </div>
         </form>
     </div>
@@ -185,7 +185,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="imageModalLabel">Blog Image</h5>
+                    <h5 class="modal-title" id="imageModalLabel">Foto Menu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body text-center">
@@ -207,15 +207,15 @@
             @method('DELETE')
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete Blog</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Hapus Jadwal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete the blog: <strong id="deleteCategoryName"></strong>?</p>
+                    <p>Yakin ingin menghapus jadwal: <strong id="deleteCategoryName"></strong>?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
                 </div>
             </div>
         </form>

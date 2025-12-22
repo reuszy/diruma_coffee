@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
             'middle_name' => 'nullable|string|max:255',  
             'last_name' => 'required|string|max:255',  
             'email' => 'required|email|unique:users,email,' . $userId,
-            'role' => 'required|in:admin,global_admin',
+            'role' => 'required|in:admin,global_admin,customer',
         ];
     }
 

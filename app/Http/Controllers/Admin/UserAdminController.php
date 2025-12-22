@@ -35,29 +35,18 @@ class UserAdminController extends Controller
     // Store a new admin
     public function store(CreateUserRequest $request)
     {
-        $user = User::create([
+        User::create([
             'first_name' => $request->first_name,
             'middle_name' => $request->middle_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'role' => $request->role,
+            'status' => 1,
             'password' => Hash::make($request->email),
             'notice' => 'change_password_to_activate_account',
         ]);
     
-        try {
-            // Send email notification 
-            Mail::to($user->email)->send(new NewAccountNotification($user, $user->email));
-            $message = ['success' => 'User created successfully. Login details sent to user email.'];
-        } catch (TransportExceptionInterface $e) {
-  
-            $message = [
-                'success' => 'User created successfully.',
-                'error' => 'Failed to send email: ' . $e->getMessage()
-            ];
-        }
-    
-        return redirect()->route('admin.users.index')->with($message);
+        return redirect()->route('admin.users.index');
     }
     
 

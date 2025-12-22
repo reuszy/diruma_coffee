@@ -19,7 +19,7 @@ class CreateUserRequest extends FormRequest
             'last_name' => 'required|string|max:255',    
             'email' => 'required|email|unique:users,email',  
             'role' => 'required|in:admin,global_admin,customer',  
-            'password' => 'required|string|min:8|confirmed',
+            // 'password' => 'required|string|min:8|confirmed',
         ];
     }
 

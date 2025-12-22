@@ -90,7 +90,7 @@
 @endpush
 
 
-@section('title', 'Admin - Create Blog')
+@section('title', 'Admin - Buat Jadwal')
 
 
 
@@ -105,21 +105,21 @@
 
       <div class="card">
         <div class="card-header">
-            <b>Create Blog Post</b>
+            <b>Buat Jadwal Baru</b>
         </div>
         <form action="{{ route('admin.blog.store') }}" method="POST" id="editForm" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="mb-3">
-                    <label for="editName" class="form-label"><b>Blog Name</b></label>
+                    <label for="editName" class="form-label"><b>Judul</b></label>
                     <input type="text" class="form-control" id="editName" name="name" value="{{ old('name') }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="editContent" class="form-label"><b>Content</b></label>
+                    <label for="editContent" class="form-label"><b>Konten</b></label>
                     <textarea id="summernote" class="form-control" id="editContent" name="content" rows="5" required>{{ old('content') }}</textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="editImage" class="form-label"><b>Image</b></label>
+                    <label for="editImage" class="form-label"><b>Foto Menu</b></label>
                     <input type="file" class="form-control" id="editImage" name="image" accept="image/*">
                 </div>
                 <hr/>
@@ -131,20 +131,12 @@
                  
             </div>
             <div class="card-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('admin.blog.index') }}'">Back</button>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='{{ route('admin.blog.index') }}'">Batal</button>
+                <button type="submit" class="btn btn-secondary">Simpan</button>
             </div>
         </form>
     </div>
     
-    
- 
- 
-  
-
-
-
-
    
     </div>
     <!-- content-wrapper ends -->

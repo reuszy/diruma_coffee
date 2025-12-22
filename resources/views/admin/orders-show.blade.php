@@ -86,13 +86,11 @@
 
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span>Order Details - #{{ $order->order_no }} </span>
+                <span>Detail Order - #{{ $order->order_no }} </span>
 
-                @if ($order->status_online_pay == 'paid' || is_null($order->status_online_pay))
-                    @if ($order->status !== 'completed' && $order->status !== 'cancelled')
-                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal">Update Order</button>
-                    @endif
-                @endif
+                <a href="{{ route('admin.orders.index') }}">
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal">Kembali</button>
+                </a>
             
         
             </div>
@@ -106,19 +104,19 @@
                             </tr>                               
                  
                             <tr>
-                                <th>Total Paid</th>
+                                <th>Total Dibayar</th>
                                 <td>{!! $site_settings->currency_symbol !!}{{ number_format($order->total_price + ($order->delivery_fee ?? 0), 2) }}</td>
                             </tr>
                             <tr>
-                                <th>Delivery Fee</th>
+                                <th>Ongkos Kirim</th>
                                 <td>{{ $order->delivery_fee === null ? 'N/A' : html_entity_decode($site_settings->currency_symbol) . number_format($order->delivery_fee, 2) }}</td>
                             </tr>
                             <tr>
-                                <th>Delivery Distance</th>
+                                <th>Jarak Pengantaran</th>
                                 <td> {{ $order->delivery_distance === null ? 'N/A' : $order->delivery_distance . ' miles' }}</td>                              
                             </tr>
                             <tr>
-                                <th>Price Per Mile</th>
+                                <th>Ongkir /km</th>
                                 <td> {{ $order->price_per_mile === null ? 'N/A' : html_entity_decode($site_settings->currency_symbol) . number_format($order->price_per_mile,2) }}</td>                              
                             </tr>
                             
@@ -135,11 +133,11 @@
                                 <td>{{ $order->updated_at->format('g:i A -  j M, Y') }}</td>
                             </tr>                             
                             <tr>
-                                <th>Payment Method</th>
+                                <th>Metode Pembayaran</th>
                                 <td>{{ $order->payment_method }}</td>
                             </tr>              
                             <tr>
-                                <th>Order Type</th>
+                                <th>Tipe Order</th>
                                 <td>{{ ucfirst($order->order_type) }}</td>
                             </tr>                  
 
@@ -241,7 +239,7 @@
          
                 <div class="card">
                     <div class="card-header">
-                        <h5>User Information</h5>
+                        <h5>Informasi User</h5>
                     </div>
                     <div class="card-body">
                         <!-- Table for User Info -->
@@ -278,7 +276,7 @@
               
                 <div class="card ">
                     <div class="card-header">
-                        <h5>Customer Information</h5>
+                        <h5>Informasi Customer</h5>
                     </div>
                     <div class="card-body">
                         @if($order->customer)
@@ -286,7 +284,7 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Name:</strong></td>
+                                        <td><strong>Nama:</strong></td>
                                         <td>{{ $order->customer->name }}</td>
                                     </tr>
                                     <tr>
@@ -294,7 +292,7 @@
                                         <td>{{ $order->customer->email }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Phone Number:</strong></td>
+                                        <td><strong>No. Telepon:</strong></td>
                                         <td>
                                             <a href="https://wa.me/{{ $phone }}" target="_blank" class="text-success" style="text-decoration: none; font-weight: bold;">
                                                 <i class="fa fa-whatsapp"></i> {{ $order->customer->phone_number }}
@@ -302,7 +300,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Address:</strong></td>
+                                        <td><strong>Alamat:</strong></td>
                                         <td>{{ $order->customer->address }}</td>
                                     </tr>
                                 </tbody>
@@ -322,7 +320,7 @@
  
         <!-- Delete Button to trigger modal -->
         <button type="button" class="btn-sm btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-            <i class="fa fa-trash"></i> Delete Order
+            <i class="fa fa-trash"></i> Hapus Order
         </button>
 
 
@@ -333,18 +331,18 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
-                        Are you sure you want to delete this order?
+                        Yakin ingin hapus order ini?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                         <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Hapus</button>
                         </form>
                     </div>
                 </div>
@@ -353,51 +351,6 @@
 
 
     @endif
-
-
-
-
-
-
-
-
-
-
-        <!-- Update Order Modal -->
-        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="updateModalLabel">Update Order Status</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <label for="orderStatus">Order Status</label>
-                                <select class="form-control" id="orderStatus" name="status">
-                                    <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Completed</option>
-                                    <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
 
 
     </div>

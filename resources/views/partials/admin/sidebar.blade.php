@@ -39,19 +39,19 @@
           <li class="nav-item {{ Request::is('admin/order*') ? 'active-nav' : '' }}">
             <a class="nav-link" href="{{ route('admin.orders.index') }}">
                 <i class="fa fa-file menu-icon"></i>
-                <span class="menu-title">Management Pesanan</span>
+                <span class="menu-title">Daftar Pesanan</span>
             </a>
         </li>
         <li class="nav-item {{ request()->route()->named('admin.table-bookings') ? 'active-nav' : '' }}">
           <a class="nav-link" href="{{ route('admin.table-bookings') }}">
               <i class="fa fa-folder-open menu-icon"></i>
-              <span class="menu-title">Management Booking</span>
+              <span class="menu-title">Reservasi</span>
           </a>
         </li>        
         <li class="nav-item {{ Request::is('admin/blog*') ? 'active-nav' : '' }}">
             <a class="nav-link" href="{{ route('admin.blog.index') }}">
                 <i class="far fa-newspaper menu-icon"></i>
-                <span class="menu-title">Management Berita</span>
+                <span class="menu-title">Jadwal Katering</span>
             </a>
         </li>
         
@@ -62,14 +62,14 @@
         <li class="nav-item {{ request()->route()->named('admin.users.index') ? 'active-nav' : '' }}">
           <a class="nav-link" href="{{ route('admin.users.index') }}">
               <i class="fa fa-users menu-icon"></i>
-              <span class="menu-title">Management Pengguna</span>
+              <span class="menu-title">Management Akun</span>
           </a>
         </li>
               
         <li class="nav-item">
             <a class="nav-link collapsed" data-toggle="collapse" href="#site-settings" aria-expanded="false" aria-controls="site-settings">
                 <i class="fa fa-cog menu-icon"></i>
-                <span class="menu-title">Pengaturan Website</span>
+                <span class="menu-title">Pengaturan</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="site-settings" style="">

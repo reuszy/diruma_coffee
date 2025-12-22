@@ -74,7 +74,7 @@
 @endpush
 
 
-@section('title', 'Admin - Manage Orders')
+@section('title', 'Admin - Daftar Order')
 
 
 
