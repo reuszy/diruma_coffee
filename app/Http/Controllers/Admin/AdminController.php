@@ -8,13 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
-use App\Mail\PasswordChangedNotification;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Controllers\Traits\OrderStatisticsTrait;
 use App\Http\Controllers\Traits\AdminViewSharedDataTrait;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -33,7 +31,7 @@ class AdminController extends Controller
     {
         $currentYear = now()->year;
     
-        $salesData = \DB::table('orders')
+        $salesData = DB::table('orders')
             ->selectRaw('MONTHNAME(created_at) as month, COUNT(*) as total_sales')
             ->whereYear('created_at', $currentYear)  
             ->groupByRaw('MONTH(created_at), MONTHNAME(created_at)')
@@ -67,7 +65,7 @@ class AdminController extends Controller
 
     public function updateMyProfile(UpdateProfileRequest $request)
     {
-        $user = Auth::User();
+        $user = User::find(Auth::id());
         $validated = $request->validated();
     
         $user->first_name = $validated['first_name'];
@@ -107,26 +105,19 @@ class AdminController extends Controller
     {
         $request->validate([
             'current_password' => 'required|string',
-            'new_password' => 'required|string|min:8|confirmed',
+            'new_password' => 'required|string|min:5|confirmed',
         ]);
 
-        $user = Auth::User();
+        $user = User::find(Auth::id());
 
-        // Check if the current password matches the user's password
         if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+            return back()->withErrors(['current_password' => 'Password saat ini salah.']);
         }
 
-        // Update the password
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        // Send password changed notification email
-        Mail::to($user->email)->send(new PasswordChangedNotification($user));
-
-        return redirect()->route('admin.dashboard')->with('success', 'Your password has been successfully updated.');
+        return redirect()->route('admin.dashboard')->with('success', 'Password kamu berhasil diubah.');
     }    
-
-
     
 }

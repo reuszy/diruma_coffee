@@ -4,14 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Mail\NewAccountNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Controllers\Traits\AdminViewSharedDataTrait;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class UserAdminController extends Controller
 {
@@ -42,7 +39,7 @@ class UserAdminController extends Controller
             'email' => $request->email,
             'role' => $request->role,
             'status' => 1,
-            'password' => Hash::make($request->email),
+            'password' => Hash::make('password'),
             'notice' => 'change_password_to_activate_account',
         ]);
     
@@ -50,7 +47,7 @@ class UserAdminController extends Controller
     }
     
 
-    // Update an admin
+    // Update akun
     public function update(UpdateUserRequest $request, $id)
     {
         $user = User::findOrFail($id);
@@ -82,6 +79,18 @@ class UserAdminController extends Controller
         return back()->with('success', 'User updated successfully.');
     }
     
+
+    public function resetPassword($id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->password = Hash::make('password');
+        $user->save();
+
+        return redirect()->back()->with('success', 'Password user ' . $user->first_name . ' berhasil direset menjadi "password".');
+    }
+
+
     public function destroy($id)
     {
         $user = User::findOrFail($id);

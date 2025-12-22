@@ -121,6 +121,9 @@ Route::prefix('admin')->middleware(RedirectIfNotAdmin::class)->group(function ()
     Route::get('change-password', [AdminController::class, 'showChangePasswordForm'])->name('change.password.form');
     Route::post('change-password', [AdminController::class, 'changePassword'])->name('change-password.update');
 
+    // Reset Password
+    Route::put('/users/{id}/reset-password', [UserAdminController::class, 'resetPassword'])->name('admin.users.reset-password');
+
     //Admin Blog routes
     Route::get('blog', [BlogController::class, 'index'])->name('admin.blog.index');
     Route::get('blog/create', [BlogController::class, 'create'])->name('admin.blog.create');

@@ -19,12 +19,12 @@ class UserSeeder extends Seeder
             'first_name' => 'Rizqi',
             'middle_name' => 'D',
             'last_name' => 'Saputra',
-            'email' => 'reuszy@gmail.com',
+            'email' => 'saputra@gmail.com',
             'password' => Hash::make('12345'),
             'role' => 'global_admin',
             'status' => 1,
             'phone_number' => '+62877',
-            'address' => '123 Main Street, Springfield',
+            'address' => 'Puerto Rico Selatan',
             'profile_picture' => null, // Default null if no picture
             'activation_token' => null, // Default null if no activation token
             'remember_token' => null,

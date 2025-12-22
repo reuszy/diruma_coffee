@@ -52,6 +52,13 @@
     }
 
 
+    function confirmReset(userId, userName) {
+        if (confirm("Apakah Anda yakin ingin mereset password user '" + userName + "' menjadi 'password'?")) {
+            document.getElementById('reset-form-' + userId).submit();
+        }
+    }
+
+
     function deleteUser(id) {
         // 1. Siapkan URL route delete (ganti :id dengan ID user)
         // Pastikan route 'admin.users.destroy' sudah ada di web.php Anda
@@ -123,7 +130,7 @@
         <div class="card-body">
             @if($users->isEmpty())
                 <div class="alert alert-warning" role="alert">
-                    Tidak ada akun admin
+                    Tidak ada akun
                 </div>
             @else
                 <table class="table">
@@ -152,35 +159,51 @@
                                 </td>
                                 <td>
                                     <button 
-                                    class="btn btn-info btn-sm" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#viewUserModal" 
-                                    data-first_name="{{ $user->first_name }}" 
-                                    data-middle_name="{{ $user->middle_name }}" 
-                                    data-last_name="{{ $user->last_name }}"
-                                    data-email="{{ $user->email }}"
-                                    data-role="{{ ucwords(str_replace('_', ' ', $user->role)) }}"
-                                    data-status="{{ $user->status }}"
-                                    data-phone-number="{{ $user->phone_number }}"
-                                    data-address="{{ $user->address }}"
-                                    data-profile-picture="{{ $user->profile_picture ? asset('storage/profile-picture/' . $user->profile_picture) : asset('assets/images/user-icon.png') }}"
-                                    > <i class="fa fa-eye"></i>  </button>
+                                        class="btn btn-info btn-sm mr-2" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#viewUserModal" 
+                                        data-first_name="{{ $user->first_name }}" 
+                                        data-middle_name="{{ $user->middle_name }}" 
+                                        data-last_name="{{ $user->last_name }}"
+                                        data-email="{{ $user->email }}"
+                                        data-role="{{ ucwords(str_replace('_', ' ', $user->role)) }}"
+                                        data-status="{{ $user->status }}"
+                                        data-phone-number="{{ $user->phone_number }}"
+                                        data-address="{{ $user->address }}"
+                                        data-profile-picture="{{ $user->profile_picture ? asset('storage/profile-picture/' . $user->profile_picture) : asset('assets/images/user-icon.png') }}"
+                                        > <i class="fa fa-eye"></i> 
+                                    </button>
 
                                     <button 
-                                    class="btn btn-warning btn-sm" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#editUserModal"
-                                    data-id="{{ $user->id }}"
-                                    data-first-name="{{ $user->first_name }}"
-                                    data-middle-name="{{ $user->middle_name }}"
-                                    data-last-name="{{ $user->last_name }}"
-                                    data-email="{{ $user->email }}"
-                                    data-role="{{ $user->role }}"
-                                    data-status="{{ $user->status }}"
-                                    data-notice="{{ $user->notice }}"
-                                    onclick="editUser(this)">
-                                    <i class='fa fa-edit'></i>
+                                        class="btn btn-warning btn-sm mr-2" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#editUserModal"
+                                        data-id="{{ $user->id }}"
+                                        data-first-name="{{ $user->first_name }}"
+                                        data-middle-name="{{ $user->middle_name }}"
+                                        data-last-name="{{ $user->last_name }}"
+                                        data-email="{{ $user->email }}"
+                                        data-role="{{ $user->role }}"
+                                        data-status="{{ $user->status }}"
+                                        data-notice="{{ $user->notice }}"
+                                        onclick="editUser(this)">
+                                        <i class='fa fa-edit'></i>
                                     </button>
+
+                                    <button type="button" 
+                                        class="btn btn-dark btn-sm text-white mr-2" 
+                                        onclick="confirmReset({{ $user->id }}, '{{ $user->first_name }}')"
+                                        title="Reset Password ke Default">
+                                        <i class="fa fa-key"></i>
+                                    </button>
+
+                                    <form id="reset-form-{{ $user->id }}" 
+                                        action="{{ route('admin.users.reset-password', $user->id) }}" 
+                                        method="POST" 
+                                        style="display: none;">
+                                        @csrf
+                                        @method('PUT')
+                                    </form>
 
                                     <button 
                                         class="btn btn-danger btn-sm" 
@@ -211,7 +234,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger" role="alert">
-                        <i class="fa fa-exclamation-triangle"></i> Password Akun baru sama dengan Alamat Email nya.
+                        <i class="fa fa-exclamation-triangle"></i> Password Akun baru bernilai default ('password').
                     </div>
                     <div class="mb-3">
                         <label>Nama Depan</label>
