@@ -122,8 +122,17 @@
                         <div class="blog_text">
                             <h2 class="blog_title">{{ $blog->name }}</h2>
                             <ul class="list_none blog_meta">
-                                <li><a href="#"><i class="ti-calendar"></i> {{ $blog->created_at->format('g:i A -  j M, Y') }}</a></li>
-                             </ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-calendar"></i> 
+                                        {{ ($blog->updated_at ?? $blog->created_at)->format('j M, Y') }} 
+                                        
+                                        @if($blog->valid_until)
+                                            - {{ $blog->valid_until->format('j M, Y') }}
+                                        @endif
+                                    </a>
+                                </li>
+                            </ul>
                              {!! $blog->content !!}
                         	<div class="blog_post_footer">
                                 <div class="row justify-content-between align-items-center">

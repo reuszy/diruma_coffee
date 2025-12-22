@@ -16,6 +16,7 @@ class BlogRequest extends FormRequest
         $rules = [
             'name' => 'required|string|max:255',
             'content' => 'required',
+            'valid_until' => 'nullable|date|after_or_equal:today',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 

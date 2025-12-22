@@ -25,9 +25,7 @@ class BlogController extends Controller
         
     }
     
-   
-    
-    // Show list of blogs
+
     public function index()
     {
         $blogs = Blog::all();
@@ -54,6 +52,7 @@ class BlogController extends Controller
         return redirect()->route('admin.blog.index')->with('success', 'Blog post created successfully.');
 
     }
+    
     
     public function edit($id)
     {

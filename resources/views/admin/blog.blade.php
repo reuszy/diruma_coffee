@@ -106,6 +106,7 @@
                         <tr>
                             <th scope="col">Judul</th>
                             <th scope="col">Tanggal</th>
+                            <th scope="col">Sampai Dengan</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -116,11 +117,18 @@
                                 <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->name }}" width="100" class="img-thumbnail trigger-lightbox" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="{{ asset('storage/' . $blog->image) }}"> {{ $blog->name }}</td>
                             <td>{{ $blog->updated_at->format('g:i A -  j M, Y') }}</td>
                             <td>
+                                @if($blog->valid_until)
+                                    <span class="{{ $blog->valid_until->isPast() ? 'text-danger font-weight-bold' : '' }}">
+                                        {{ $blog->valid_until->format('j M, Y') }}
+                                    </span>
+                                @else
+                                    <span class="badge badge-success">Selamanya</span>
+                                @endif
+                            </td>
+                            <td>
                                 <button type="button" class="btn btn-info btn-sm edit-btn"  onclick="window.open('{{ route('blog.view', $blog->id) }}', '_blank')"> <i class="fa fa-eye"></i> </button>
                                 <button type="button" class="btn btn-warning btn-sm edit-btn" onclick="window.location.href='{{ route('admin.blog.edit', $blog->id) }}'"> <i class="fa fa-edit"></i> </button>                           
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $blog->id }}" data-name="{{ $blog->name }}"><i class="fa fa-trash"></i></button>
- 
-
                             </td>
                         </tr>
                         @empty

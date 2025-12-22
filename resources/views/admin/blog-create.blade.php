@@ -122,6 +122,11 @@
                     <label for="editImage" class="form-label"><b>Foto Menu</b></label>
                     <input type="file" class="form-control" id="editImage" name="image" accept="image/*">
                 </div>
+                <div class="mb-3">
+                    <label for="valid_until" class="form-label"><b>Berlaku Sampai Tanggal</b></label>
+                    <input type="date" class="form-control" id="valid_until" name="valid_until" value="{{ old('valid_until') }}">
+                    <small class="text-muted">Biarkan kosong jika jadwal ini berlaku selamanya.</small>
+                </div>
                 <hr/>
                 <div class="mb-3">
                     <div>

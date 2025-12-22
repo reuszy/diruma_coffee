@@ -9,5 +9,14 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'content', 'image'];
+    protected $fillable = [
+        'name',
+        'content',
+        'valid_until',
+        'image'
+    ];
+
+    protected $casts = [
+        'valid_until' => 'date',
+    ];
 }
