@@ -979,6 +979,72 @@
                 ]
             }
         },
+        "/api/orders": {
+            "get": {
+                "tags": [
+                    "Order Management"
+                ],
+                "summary": "Ambil Semua data order",
+                "description": "Hanya user dengan role Admin yang bisa mengakses endpoint ini",
+                "operationId": "955bb77a45ae173a485fadb8befed93f",
+                "responses": {
+                    "200": {
+                        "description": "List semua order",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden (Bukan Admin)"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/orders/{id}": {
+            "get": {
+                "tags": [
+                    "Order Management"
+                ],
+                "summary": "Lihat detail spesifik satu order",
+                "description": "User hanya bisa lihat miliknya sendiri, Admin bisa lihat punya siapa saja",
+                "operationId": "88d27387b1e409e075c18609d4a0c300",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detail Order ditemukan",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Order tidak ditemukan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/testimony": {
             "get": {
                 "tags": [
@@ -1350,6 +1416,10 @@
         {
             "name": "Menu",
             "description": "Menu"
+        },
+        {
+            "name": "Order Management",
+            "description": "Order Management"
         },
         {
             "name": "Testimoni",

@@ -245,7 +245,7 @@
 
             <div class="row justify-content-center mt-4 pt-2">
                 <div class="col-auto animation" data-animation="fadeInUp" data-animation-delay="0.4s">
-                    <a href="{{ route('catering') }}" class="btn btn-default rounded-0">Order Katering Diruma</a> 
+                    <a href="{{ route('catering') }}" class="btn btn-default rounded-pill">Order Katering Diruma</a> 
                 </div>
             </div>
 
@@ -307,11 +307,11 @@
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-7 col-md-9 animation text-center" data-animation="fadeInUp" data-animation-delay="0.02s">
                 <div class="heading_s1 heading_light">
-                    <span class="sub_heading font_style1">Rasakan Pengalaman Caffe Kalcer</span>
-                    <h2>Ga Kalcer Gaboleh Kesini</h2>
+                    <span class="sub_heading font_style1">Ada Cerita Ada Rasa Diruma</span>
+                    <h2>Ruang Nyaman Untuk Cerita Baru</h2>
                 </div>
-                <p class="text-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
-                <a class="btn btn-success rounded-0" href="{{ route('menu') }}">Lihat Menu</a>
+                <p class="text-white">Temukan Inspirasimu Saat Diruma Coffee and Living.</p>
+                <a class="btn btn-success rounded-0" href="{{ route('menu') }}">Explore Menu</a>
                 <div class="large_divider clearfix"></div>
             </div>
         </div>
@@ -329,7 +329,6 @@
                     <span class="sub_heading font_style1">Testimoni Diruma</span>
                     <h2>Customer Kami Mengatakan!</h2>
                 </div>
-                {{-- <p class="text-center leads">Hear what our happy customers have to say about their experience with us.</p> --}}
             </div>
         </div>
         <div class="row justify-content-center">
@@ -337,7 +336,6 @@
                 <div class="testimonial_slider testimonial_style2 carousel_slider owl-carousel owl-theme" data-margin="10" data-loop="true" data-autoplay="true" data-responsive='{"0":{"items": "1"}, "767":{"items": "2"}, "1199":{"items": "3"}}'>
 
                     @foreach($testimonies as $testimony)
-
                     <div class="testimonial_box">
                         <div class="author_info">
                             <div class="author_name">
@@ -352,6 +350,47 @@
 
                 </div>
             </div>
+        </div>
+        
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-12 text-center animation" data-animation="fadeInUp" data-animation-delay="0.04s">
+                <button type="button" class="btn btn-default rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#addTestimonyModal">
+                    <i class="linearicons-pencil"></i> Tulis Ulasan Anda
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="addTestimonyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Bagikan Pengalaman Anda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('testimony.store.public') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Nama Anda</label>
+                        <input type="text" name="name" class="form-control" required 
+                               value="{{ Auth::check() ? Auth::user()->first_name . ' ' . Auth::user()->last_name : '' }}"
+                               {{ Auth::check() ? 'readonly' : '' }}>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Ulasan</label>
+                        <textarea name="content" class="form-control" rows="4" placeholder="Ceritakan pengalaman seru Anda disini..." required></textarea>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-default">Kirim Ulasan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

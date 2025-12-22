@@ -35,6 +35,9 @@ Route::get('menu-item/{id}', [MainSiteController::class, 'menuItem'])->name('men
 //Catering
 Route::get('/catering', [MainSiteController::class, 'cateringPage'])->name('catering');
 
+// Customer Testimony
+Route::post('/testimony/submit', [MainSiteController::class, 'storeTestimony'])->name('testimony.store.public');
+
 // Customer Cart 
 Route::get('cart/', [MainSiteController::class, 'cart'])->name('customer.cart');
 Route::post('cart/add', [MainSiteController::class, 'addToCart'])->name('customer.cart.add');

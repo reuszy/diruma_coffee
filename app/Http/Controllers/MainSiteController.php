@@ -261,8 +261,23 @@ class MainSiteController extends Controller
     {
         $termsAndCondition = TermsAndCondition::latest()->first();
         return view('main-site.terms-conditions', compact('termsAndCondition'));
-     }
+    }
  
+
+    public function storeTestimony(Request $request)
+    {
+        $request->validate([
+            'name'      => 'required|string|max:255',
+            'content'   => 'required|string'
+        ]);
+
+        Testimony::create([
+            'name' => $request->name,
+            'content' => $request->content
+        ]);
+
+        return redirect()->back()->with('success', 'Terimakasih Atas Ulasan Anda!');
+    }
 
     
 }

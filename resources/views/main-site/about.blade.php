@@ -116,17 +116,17 @@
                 <div class="about_box box_shadow1">
                     <div class="heading_s1">
                         <span class="sub_heading font_style1">Tentang Diruma</span>
-                        <h2>{{ config('site.name') }}</h2>
+                        <h2>Nyaman Seperti {{ config('site.name') }}</h2>
                     </div>
-                    <p>Selamat datang ke {{ config('site.name') }}, woi sumpah ini diisi apa?</p>
-                    <p>Pada {{ config('site.name') }}, ini juga diisi apa woi?</p>
+                    <p>{{ config('site.name') }}, terinspirasi dari kehangatan suasana rumah, kami menyajikan kopi pilihan dan hidangan autentik yang dibuat sepenuh hati untuk menemani setiap langkah perjalanan Anda.</p>
+                    <p>{{ config('site.name') }}, hadir sebagai rumah kedua bagi Anda. Kami memadukan dedikasi terhadap rasa dan kecintaan akan ruang yang nyaman untuk menciptakan pengalaman "Living" yang sebenarnya.</p>
                 </div>
             </div>
             
         	<div class="col-lg-6">	
                 <div class="fancy_style1 overlay_bg_20">
                     <img src="/assets/images/about_diruma.png" alt="about_img5" />
-                    <a href="https://www.youtube.com/watch?v=RAyCWNH_2To" class="btn btn-ripple ripple_center video_popup animation" data-animation="fadeInUp" data-animation-delay="0.6s"><span class="ripple"><i class="ion-play"></i></span></a>
+                    {{-- <a href="https://www.youtube.com/watch?v=RAyCWNH_2To" class="btn btn-ripple ripple_center video_popup animation" data-animation="fadeInUp" data-animation-delay="0.6s"><span class="ripple"><i class="ion-play"></i></span></a> --}}
                 </div>
             </div>
         </div>
@@ -139,10 +139,10 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-8 animation" data-animation="fadeInUp" data-animation-delay="0.02s">
                         <div class="heading_s1 heading_light">
-                            <span class="sub_heading font_style1">Rasakan Pengalaman Rasa Kopi Yang Autentik</span>
-                            <h2>{{ config('site.name') }}: Caffe Kalcer Pwt Ngapak</h2>
+                            <span class="sub_heading font_style1">Ada Cerita Ada Rasa Diruma</span>
+                            <h2>{{ config('site.name') }}: Ruang Nyaman Untuk Cerita Baru</h2>
                         </div>
-                        <p class="text-white">Mulailah perjalanan sebagai pendekar kopi bersama {{ config('site.name') }}, ini diisi apa woiii</p>
+                        <p class="text-white">Temukan Inspirasimu Saat Berada {{ config('site.name') }}.</p>
                     </div>
                 </div>
             </div>
@@ -161,8 +161,8 @@
                         <i class="flaticon-dining-table"></i>
                     </div>
                     <div class="icon_box_content">
-                        <h5 class="text-uppercase">Ini Diisi Apa?</h5>
-                        <p>Gatau mau nulis apa</p>
+                        <h5 class="text-uppercase">Senyaman Diruma</h5>
+                        <p>Temukan sudut terbaikmu untuk mencari inspirasi atau sekadar rehat.</p>
                     </div>
                 </div>
             </div>
@@ -174,8 +174,8 @@
                         <i class="flaticon-contact"></i>
                     </div>
                     <div class="icon_box_content">
-                        <h5 class="text-uppercase">Diisi apa ini</h5>
-                        <p>Belum kepikiran mau nulis apa</p>
+                        <h5 class="text-uppercase">Mahasiswa Friendly</h5>
+                        <p> Spesial untuk kamu pejuang tugas! Nikmati Diskon 10%.</p>
                     </div>
                 </div>
             </div>
@@ -187,8 +187,8 @@
                         <i class="flaticon-restaurant"></i>
                     </div>
                     <div class="icon_box_content">
-                        <h5 class="text-uppercase">diisi apa yaa??</h5>
-                        <p>belum kepikiran juga sih</p>
+                        <h5 class="text-uppercase">Cita Rasa Autentik</h5>
+                        <p>Dari biji kopi pilihan hingga hidangan lezat yang menggugah selera.</p>
                     </div>
                 </div>
             </div>
@@ -197,8 +197,6 @@
 </div>
 <!-- END SECTION FEATURES -->
 
-         
- 
 @endsection
 
 
