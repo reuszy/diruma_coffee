@@ -35,7 +35,7 @@ class MenuController extends Controller
         return response()->json([
             'status' => 'Sukses',
             'data' => $menus
-        ]);
+        ], 200);
     }
 
     /**

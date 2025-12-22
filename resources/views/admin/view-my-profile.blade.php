@@ -30,7 +30,7 @@
 @endpush
 
 
-@section('title', 'Admin - Settings - Categories')
+@section('title', 'Admin - Profil')
 
 
 
@@ -61,15 +61,15 @@
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <td><b>First Name:</b></td>
+                        <td><b>Nama Depan:</b></td>
                         <td>{{ $user->first_name }}</td>
                     </tr>
                     <tr>
-                        <td><b>Middle Name:</b></td>
+                        <td><b>Nama Tengah:</b></td>
                         <td>{{ $user->middle_name ?? '' }}</td>
                     </tr>
                     <tr>
-                        <td><b>Last Name:</b></td>
+                        <td><b>Nama Belakang:</b></td>
                         <td>{{ $user->last_name }}</td>
                     </tr>
                     <tr>
@@ -97,11 +97,6 @@
             <button type="button" onclick="window.location='{{ route('admin.dashboard') }}'" class="btn btn-success float-right">Dashboard</button>
         </div>
     </div>
-
-    
-  
-
-
    
     </div>
     <!-- content-wrapper ends -->

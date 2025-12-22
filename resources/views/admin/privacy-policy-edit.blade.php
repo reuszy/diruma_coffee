@@ -56,7 +56,7 @@
 @endpush
 
 
-@section('title', 'Admin - Privacy Policy ')
+@section('title', 'Admin - Kebijakan Privasi ')
 
 
 
@@ -71,21 +71,21 @@
 
       <div class="card">
         <div class="card-header">
-            <b>Privacy Policy </b>
+            <b>Kebijakan Privasi </b>
         </div>
         <form action="{{ route('admin.privacy-policy.update') }}" method="POST" >
             @csrf
             <div class="card-body">
   
                 <div class="mb-3">
-                    <label for="editContent" class="form-label"><b>Content</b></label>
+                    <label for="editContent" class="form-label"><b>Konten</b></label>
                     <textarea  id="summernote" name="content" class="form-control" rows="10" required>{{ old('content', $privacyPolicy->content ?? '') }}</textarea>
                 </div>
                  
             </div>
             <div class="card-footer d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" onclick="history.go(-1)">Back</button>
-                <button type="Save" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-primary" onclick="history.go(-1)">Kembali</button>
+                <button type="Save" class="btn btn-secondary">Simpan</button>
             </div>
         </form>
     </div>

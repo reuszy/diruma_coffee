@@ -57,7 +57,7 @@
 @endpush
 
 
-@section('title', 'Admin - Manage Testimonies')
+@section('title', 'Admin - Testimoni')
 
 
 
@@ -73,15 +73,15 @@
  
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Manage Testimonies ({{  $testimonies->count() }})</span>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">Create Testimony</button>
+            <span>Testimoni Pelanggan ({{  $testimonies->count() }})</span>
+            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createModal">Tambah Testimoni</button>
         </div>
         <div class="card-body">
             <table class="table">
                 <thead>
                     <tr>
-                        <th style="width:30%;">Name</th>
-                        <th style="width:50%;">Content</th>
+                        <th style="width:30%;">Nama</th>
+                        <th style="width:50%;">Konten</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -111,7 +111,7 @@
                         <tr>
                             <td colspan="3" class="text-center">
                                 <div class="alert alert-warning" role="alert">
-                                    No testimonies found.
+                                    Tidak ada Testimoni.
                                 </div>
                             </td>
                         </tr>
@@ -130,22 +130,22 @@
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createModalLabel">Create Testimony</h5>
+                    <h5 class="modal-title" id="createModalLabel">Tambah Testimoni</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
+                        <label for="name" class="form-label">Nama Pelanggan</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label">Content</label>
+                        <label for="content" class="form-label">Apa Kata Pelanggan</label>
                         <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-secondary">Tambah</button>
                 </div>
             </div>
         </form>
@@ -160,22 +160,22 @@
             @method('PUT')
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Testimony</h5>
+                    <h5 class="modal-title" id="editModalLabel">Edit Testimoni</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="editName" class="form-label">Name</label>
+                        <label for="editName" class="form-label">Nama Pelanggan</label>
                         <input type="text" class="form-control" id="editName" name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="editContent" class="form-label">Content</label>
+                        <label for="editContent" class="form-label">Apa Kata Pelanggan</label>
                         <textarea class="form-control" id="editContent" name="content" rows="3" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-secondary">Simpan</button>
                 </div>
             </div>
         </form>
@@ -193,15 +193,15 @@
 
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete Category</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Hapus Testimoni</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete Testimoney from <strong id="deleteName"></strong>?</p>
+                    <p>Yakin mau hapus testimoni dari <strong id="deleteName"></strong>?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
                 </div>
             </div>
         </form>

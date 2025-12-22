@@ -200,7 +200,7 @@
 @endpush
 
 
-@section('title', 'Admin - Settings - General')
+@section('title', 'Admin - Pengaturan Umum')
 
 
 
@@ -214,27 +214,23 @@
 
  
       <hr/>
-      <h1>General Settings</h1>
-      
-
-
-
+      <h1>Pengaturan Umum</h1>
 
       <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
             <!-- Phone Numbers -->
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Restaurant Phone Numbers</span>
+                    <span>No. Telepon Diruma</span>
                     <button class="btn-sm btn btn-success" data-bs-toggle="modal" data-bs-target="#phoneNumberModal" onclick="createPhoneNumber()">
-                        <i class="fa fa-plus"></i> Add Phone Number
+                        <i class="fa fa-plus"></i> Tambah
                     </button>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-8">Phone Number</th>
+                                <th class="col-8">No. Telepon</th>
                                 <th class="col-4 text-end">Actions</th>
                             </tr>
                         </thead>
@@ -259,7 +255,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="2" class="text-center">No phone numbers available. Please add a new phone number.</td>
+                                    <td colspan="2" class="text-center">Tidak ada No. Telepon. Tolong tambahkan terlebih dahulu.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -273,16 +269,16 @@
             <!-- Addresses -->
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Restaurant Addresses</span>
+                    <span>Alamat Diruma</span>
                     <button class="btn-sm btn btn-success" data-bs-toggle="modal" data-bs-target="#addressModal" onclick="createAddress()">
-                        <i class="fa fa-plus"></i> Add Address
+                        <i class="fa fa-plus"></i> Tambah
                     </button>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-8">Address</th>
+                                <th class="col-8">Alamat</th>
                                 <th class="col-4 text-end">Actions</th>
                             </tr>
                         </thead>
@@ -304,7 +300,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="2" class="text-center">No addresses available. Please add a new address.</td>
+                                    <td colspan="2" class="text-center">Tidak ada Alamat. Tolong tambahkan terlebih dahulu.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -320,17 +316,17 @@
             <!-- Social Media Handles -->
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Social Media Handles</span>
+                    <span>Sosmed Diruma</span>
                     <button class="btn-sm btn btn-success" data-bs-toggle="modal" data-bs-target="#socialMediaModal" onclick="createSocialMediaHandle()">
-                        <i class="fa fa-plus"></i> Add Handle
+                        <i class="fa fa-plus"></i> Tambah
                     </button>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Handle</th>
-                                <th>Social Media</th>
+                                <th>Username</th>
+                                <th>Sosial Media</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -360,7 +356,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-center">No social media handles available. Please add new handles.</td>
+                                    <td colspan="3" class="text-center">Tidak ada Sosial Media. Tolong tambahkan terlebih dahulu.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -373,16 +369,16 @@
             <!-- Working Hours -->
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Restaurant Working Hours</span>
+                    <span>Jam Operasional Diruma</span>
                     <button class="btn-sm btn btn-success" data-bs-toggle="modal" data-bs-target="#workingHourModal" onclick="createWorkingHour()">
-                        <i class="fa fa-plus"></i> Add Working Hours
+                        <i class="fa fa-plus"></i> Tambah
                     </button>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-8">Working Hour</th>
+                                <th class="col-8">Jam Operasioan</th>
                                 <th class="col-4">Actions</th>
                             </tr>
                         </thead>
@@ -404,7 +400,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="2" class="text-center">No working hours available. Please add new working hours.</td>
+                                    <td colspan="2" class="text-center">Tidak ada Jam Operasional Tolong tambahkan terlebih dahulu.</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -549,19 +545,19 @@
 
       <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Customer Order Settings</span>
+            <span>Customer Order</span>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.order-settings.update') }}" method="POST">
                 @csrf
     
                 <div class="form-group">
-                    <label for="price_per_mile">Price per Kilometers ({!! $site_settings->currency_symbol !!})</label>
+                    <label for="price_per_mile">Harga per Kilometer ({!! $site_settings->currency_symbol !!})</label>
                     <input type="number" name="price_per_mile" id="price_per_mile" class="form-control" value="{{ $order_settings->price_per_mile ?? '' }}" step="0.01" required>
                 </div>
     
                 <div class="form-group">
-                    <label for="distance_limit_in_miles">Distance Limit in Kilometers</label>
+                    <label for="distance_limit_in_miles">Limit pengantaran (KM)</label>
                     <input type="number" name="distance_limit_in_miles" id="distance_limit_in_miles" class="form-control" value="{{ $order_settings->distance_limit_in_miles ?? '' }}" required>
                 </div>
     

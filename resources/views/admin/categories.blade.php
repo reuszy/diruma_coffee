@@ -55,7 +55,7 @@
 @endpush
 
 
-@section('title', 'Admin - Settings - Categories')
+@section('title', 'Admin - Kategori')
 
 
 
@@ -73,16 +73,16 @@
 
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <span>Categories ({{ $categories->count() }})</span>
+                <span>Kategori ({{ $categories->count() }})</span>
                 <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#createModal">
-                    Add New Category
+                    Tambah Kategori
                 </button>
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th style="width:80%;">Name</th>
+                            <th style="width:80%;">Nama Kategori</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -92,7 +92,7 @@
                             <td><i class="typcn typcn-th-large mr-0"></i> {{ $category->name }}</td>
                             <td>
                                 <button 
-                                    class="m-2 btn btn-success btn-sm edit-btn" 
+                                    class="m-2 btn btn-warning btn-sm edit-btn" 
                                     data-id="{{ $category->id }}" 
                                     data-name="{{ $category->name }}" 
                                     data-bs-toggle="modal" 
@@ -108,7 +108,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="2" class="text-center">No categories available.</td>
+                            <td colspan="2" class="text-center">Tidak ada Kategori.</td>
                         </tr>
                         @endforelse
                     </tbody>
@@ -124,18 +124,18 @@
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createModalLabel">Add New Category</h5>
+                        <h5 class="modal-title" id="createModalLabel">Tambah Kategori Baru</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name">Category Name</label>
+                            <label for="name">Nama Kategori</label>
                             <input type="text" name="name" class="form-control" id="name" required>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-secondary">Create</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-secondary">Tambah</button>
                     </div>
                 </div>
             </form>
@@ -149,18 +149,18 @@
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Edit Category</h5>
+                        <h5 class="modal-title" id="editModalLabel">Edit Kategori</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="editName">Category Name</label>
+                            <label for="editName">Nama Kategori</label>
                             <input type="text" name="name" class="form-control" id="editName" required>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-secondary">Simpan</button>
                     </div>
                 </div>
             </form>
@@ -174,16 +174,16 @@
           @csrf
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="deleteModalLabel">Delete Category</h5>
+                  <h5 class="modal-title" id="deleteModalLabel">Hapus Kategori</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
               </div>
               <div class="modal-body">
-                  <p>Are you sure you want to delete <strong id="deleteCategoryName"></strong>?</p>
-                  <p class="text-warning">Warning: Deleting this category will also delete all related menus and orders. This action cannot be undone.</p>
+                  <p>Yakin ingin menghapus Kategori: <strong id="deleteCategoryName"></strong>?</p>
+                  <p class="text-warning">Warning: Menghapus kategori ini akan menghapus semua menu yang ada pada kategori ini. Setelah dihapus tidak bisa di Undo</p>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-danger">Delete</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                  <button type="submit" class="btn btn-danger">Hapus</button>
               </div>
           </div>
       </form>

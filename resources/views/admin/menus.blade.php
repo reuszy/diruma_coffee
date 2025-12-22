@@ -91,16 +91,16 @@
  
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Menus ({{ $categories->sum(fn($category) => $category->menus->count()) }})</span>
+            <span>Daftar Menu ({{ $categories->sum(fn($category) => $category->menus->count()) }})</span>
             <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#addModal">
-                Add Menu
+                Tambah Menu
             </button>
         </div>
         <div class="card-body">
             <div class="row">
                 @forelse ($categories as $category)
                     <div class="col-md-12 mb-4">
-                        <h4>CATEGORY: {{ $category->name }}</h4>
+                        <h4>Kategori: {{ $category->name }}</h4>
                         <hr style="border:1px solid #000">
                         <div class="table-responsive pt-3">
                             <table class="table">
@@ -124,7 +124,7 @@
                                             <td>{!! $site_settings->currency_symbol !!}{{ $menu->price }}</td>
                                             <td>{{ $menu->stock }}</td>
                                             <td>
-                                                <button class="m-1 btn btn-success btn-sm edit-btn"
+                                                <button class="m-1 btn btn-warning btn-sm edit-btn"
                                                         data-id="{{ $menu->id }}"
                                                         data-name="{{ $menu->name }}"
                                                         data-description="{{ $menu->description }}"
@@ -184,36 +184,36 @@
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addModalLabel">Add Menu</h5>
+                    <h5 class="modal-title" id="addModalLabel">Tambah Menu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
+                        <label for="name" class="form-label">Nama Menu</label>
                         <input type="text" name="name" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
+                        <label for="description" class="form-label">Deskripsi</label>
                         <textarea name="description" class="form-control" id="description" required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="price" class="form-label">Price ({!! $site_settings->currency_symbol !!})</label>
+                        <label for="price" class="form-label">Harga ({!! $site_settings->currency_symbol !!})</label>
                         <input type="number" step="0.01" name="price" class="form-control" id="price" required>
                     </div>
                     <div class="mb-3">
-                        <label for="stock" class="form-label">Stock</label>
-                        <input type="number" name="stock" class="form-control" id="stock" required>
+                        <label for="stock" class="form-label">Stok</label>
+                        <input type="number" name="stock" class="form-control" id="stock" value=0 required>
                     </div>
                     <div class="alert alert-danger" role="alert">
                         Recommended image size is <strong>500 x 400</strong>. Uploaded images will be cropped to Recommended size.
                     </div>
 
                     <div class="mb-3">
-                        <label for="image" class="form-label">Image</label>
+                        <label for="image" class="form-label">Foto Menu</label>
                         <input type="file" name="image" class="form-control" id="image" required>
                     </div>
                     <div class="mb-3">
-                        <label for="category_id" class="form-label">Category</label>
+                        <label for="category_id" class="form-label">Kategori</label>
                         <select name="category_id" class="form-control" id="category_id" required>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -222,8 +222,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-secondary">Save</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-secondary">Simpan</button>
                 </div>
             </div>
         </form>
@@ -243,26 +243,26 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="editName" class="form-label">Name</label>
+                        <label for="editName" class="form-label">Nama Menu</label>
                         <input type="text" name="name" class="form-control" id="editName" required>
                     </div>
                     <div class="mb-3">
-                        <label for="editDescription" class="form-label">Description</label>
+                        <label for="editDescription" class="form-label">Deskripsi</label>
                         <textarea name="description" class="form-control" id="editDescription" required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="editPrice" class="form-label">Price ({!! $site_settings->currency_symbol !!})</label>
+                        <label for="editPrice" class="form-label">Harga ({!! $site_settings->currency_symbol !!})</label>
                         <input type="number" step="0.01" name="price" class="form-control" id="editPrice" required>
                     </div>
                     <div class="mb-3">
-                        <label for="editStock" class="form-label">Stock</label>
+                        <label for="editStock" class="form-label">Stok</label>
                         <input type="number" name="stock" class="form-control" id="editStock" required>
                     </div>
                     <div class="alert alert-danger" role="alert">
                         Recommended image size is <strong>500 x 400</strong>. Uploaded images will be cropped to Recommended size.
                     </div>
                     <div class="mb-3">
-                        <label for="editImage" class="form-label">Image</label>
+                        <label for="editImage" class="form-label">Foto Menu</label>
                         <input type="file" name="image" class="form-control" id="editImage">
                     </div>
                     <div class="mb-3">
@@ -275,8 +275,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-secondary">Update</button>
                 </div>
             </div>
         </form>
@@ -291,15 +291,15 @@
             @method('DELETE')
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Delete Menu</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Hapus Menu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> <i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete this menu?
+                    Yakin ingin hapus menu?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
                 </div>
             </div>
         </form>

@@ -30,7 +30,7 @@
 @endpush
 
 
-@section('title', 'Admin - Settings - Categories')
+@section('title', 'Admin - Ubah Password')
 
 
 
@@ -48,19 +48,19 @@
               <form method="POST" action="{{ route('change-password.update') }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="current_password" class="form-label">Current Password</label>
+                    <label for="current_password" class="form-label">Password Saat ini</label>
                     <input type="password" name="current_password" class="form-control" id="current_password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="new_password" class="form-label">New Password</label>
+                    <label for="new_password" class="form-label">Password baru</label>
                     <input type="password" name="new_password" class="form-control" id="new_password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="new_password_confirmation" class="form-label">Confirm New Password</label>
+                    <label for="new_password_confirmation" class="form-label">Konfirmasi Password</label>
                     <input type="password" name="new_password_confirmation" class="form-control" id="new_password_confirmation" required>
                 </div>
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Update Password</button>
+                    <button type="submit" class="btn btn-secondary">Ubah Password</button>
                 </div>
             </form>
             
