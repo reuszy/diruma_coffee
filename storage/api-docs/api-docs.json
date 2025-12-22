@@ -1045,6 +1045,164 @@
                 ]
             }
         },
+        "/api/orders/my-orders": {
+            "get": {
+                "tags": [
+                    "Order Management"
+                ],
+                "summary": "Ambil data order milik sendiri",
+                "description": "Menampilkan history order dari user yang sedang login",
+                "operationId": "fe4f4c82ce8f1c2abef0a3f09eef6405",
+                "responses": {
+                    "200": {
+                        "description": "List order user",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/orders/create": {
+            "post": {
+                "tags": [
+                    "Order Management"
+                ],
+                "summary": "Buat Order Baru (Checkout)",
+                "operationId": "df7844e58c2d44d625514ffb7bf724c9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "items",
+                                    "total_price"
+                                ],
+                                "properties": {
+                                    "total_price": {
+                                        "type": "number",
+                                        "example": 50000
+                                    },
+                                    "note": {
+                                        "type": "string",
+                                        "example": "Jangan pedas ya"
+                                    },
+                                    "items": {
+                                        "type": "array",
+                                        "items": {
+                                            "required": [
+                                                "menu_id",
+                                                "quantity",
+                                                "price"
+                                            ],
+                                            "properties": {
+                                                "menu_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "quantity": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "price": {
+                                                    "type": "number",
+                                                    "example": 25000
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Order berhasil dibuat"
+                    },
+                    "400": {
+                        "description": "Validasi Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/orders/{id}/status": {
+            "put": {
+                "tags": [
+                    "Order Management"
+                ],
+                "summary": "Update Status Order",
+                "operationId": "2b29ab889c21230523d142cbe158780e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "status"
+                                ],
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "pending",
+                                            "processing",
+                                            "completed",
+                                            "cancelled"
+                                        ],
+                                        "example": "processing"
+                                    },
+                                    "payment_status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "unpaid",
+                                            "paid"
+                                        ],
+                                        "example": "paid"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Status berhasil diupdate"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/testimony": {
             "get": {
                 "tags": [

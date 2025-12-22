@@ -32,7 +32,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('users/{id}', [UserController::class, 'destroy']);
 
     Route::get('/orders', [OrderController::class, 'index']);
+    Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
+
     Route::get('/orders/{id}', [OrderController::class, 'show']);
+    Route::get('/orders/my-orders', [OrderController::class, 'orderUser']);
+    Route::post('/orders/create', [OrderController::class, 'store']);
 
     Route::post('/checkout', [PaymentController::class, 'store']);
 
