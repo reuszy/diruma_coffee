@@ -6,9 +6,11 @@ use App\Http\Controllers\MidtransCallbackController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\TestimonyController;
 use App\Http\Controllers\Api\UserController;
 
@@ -31,11 +33,17 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
 
+    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::post('/profile', [ProfileController::class, 'update']);
+    Route::get('/change-password', [ProfileController::class, 'updatePassword']);
+
+    Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+
     Route::get('/orders', [OrderController::class, 'index']);
     Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
 
-    Route::get('/orders/{id}', [OrderController::class, 'show']);
     Route::get('/orders/my-orders', [OrderController::class, 'orderUser']);
+    Route::get('/orders/{id}', [OrderController::class, 'show']);
     Route::post('/orders/create', [OrderController::class, 'store']);
 
     Route::post('/checkout', [PaymentController::class, 'store']);

@@ -230,48 +230,6 @@
                 ]
             }
         },
-        "/api/auth/user-profile": {
-            "get": {
-                "tags": [
-                    "Authentication"
-                ],
-                "summary": "Informasi Data",
-                "description": "Endpoint ini membutuhkan Token JWT",
-                "operationId": "529b66ac546f7229855722d12c4ff077",
-                "responses": {
-                    "200": {
-                        "description": "Sukses ambil data",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "success"
-                                        },
-                                        "data": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object"
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Token Salah / Tidak Ada"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
         "/api/categories": {
             "get": {
                 "tags": [
@@ -609,6 +567,69 @@
                 "responses": {
                     "200": {
                         "description": "Berhasil Dihapus"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/dashboard": {
+            "get": {
+                "tags": [
+                    "Admin Dashboard"
+                ],
+                "summary": "Lihat Statistik Dashboard",
+                "description": "Menampilkan ringkasan pendapatan, jumlah order, dan statistik lainnya",
+                "operationId": "dc8d6813c44cd1410a9d340fa214c3d2",
+                "responses": {
+                    "200": {
+                        "description": "Statistik Dashboard",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "total_income": {
+                                                    "type": "number",
+                                                    "example": 15000000
+                                                },
+                                                "orders_today": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "pending_orders": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "total_customers": {
+                                                    "type": "integer",
+                                                    "example": 120
+                                                },
+                                                "recent_orders": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden (Bukan Admin)"
                     }
                 },
                 "security": [
@@ -1203,6 +1224,230 @@
                 ]
             }
         },
+        "/api/profile": {
+            "get": {
+                "tags": [
+                    "Profile Management"
+                ],
+                "summary": "Lihat Data Diri Sendiri",
+                "operationId": "2db7593b14ead8d0d8ed011c747382f7",
+                "responses": {
+                    "200": {
+                        "description": "Data profile user",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Profile Management"
+                ],
+                "summary": "Update Biodata & Foto Profil",
+                "description": "Update data diri user",
+                "operationId": "df42d7bd8c9605adf2e62002661ca9f3",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "middle_name": {
+                                        "description": "Opsional",
+                                        "type": "string",
+                                        "example": "D."
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "08123456789"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Jl. Merdeka No. 1, Jakarta"
+                                    },
+                                    "profile_photo": {
+                                        "description": "File foto profil (jpg, png, jpeg). Max 2MB.",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Profile berhasil diupdate",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "sukses"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Berhasil ubah foto profil"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi Gagal",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The email has already been taken."
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/change-password": {
+            "put": {
+                "tags": [
+                    "Profile Management"
+                ],
+                "summary": "Ganti Password Akun",
+                "description": "Form ganti password (x-www-form-urlencoded)",
+                "operationId": "212b558195de141621361f53d918cdf9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "current_password",
+                                    "new_password",
+                                    "new_password_confirmation"
+                                ],
+                                "properties": {
+                                    "current_password": {
+                                        "description": "Password saat ini",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    },
+                                    "new_password": {
+                                        "description": "Password baru (min 8 karakter)",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "newpassword123"
+                                    },
+                                    "new_password_confirmation": {
+                                        "description": "Ulangi password baru",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "newpassword123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password berhasil diganti",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "sukses"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Password berhasil diganti"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Password lama salah",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Password lama salah"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/testimony": {
             "get": {
                 "tags": [
@@ -1572,12 +1817,20 @@
             "description": "Contact"
         },
         {
+            "name": "Admin Dashboard",
+            "description": "Admin Dashboard"
+        },
+        {
             "name": "Menu",
             "description": "Menu"
         },
         {
             "name": "Order Management",
             "description": "Order Management"
+        },
+        {
+            "name": "Profile Management",
+            "description": "Profile Management"
         },
         {
             "name": "Testimoni",

@@ -175,28 +175,6 @@ class AuthController extends Controller
         return $this->createNewToken($newToken);
     }
 
-    /**
-     * @OA\Get(
-     * path="/api/auth/user-profile",
-     * tags={"Authentication"},
-     * summary="Informasi Data",
-     * description="Endpoint ini membutuhkan Token JWT",
-     * security={{"bearerAuth":{}}}, 
-     * @OA\Response(
-     * response=200,
-     * description="Sukses ambil data",
-     * @OA\JsonContent(
-     * @OA\Property(property="status", type="string", example="success"),
-     * @OA\Property(property="data", type="array", @OA\Items(type="object")),
-     * )
-     * ),
-     * @OA\Response(response=401, description="Token Salah / Tidak Ada")
-     * )
-     */
-
-    public function userProfile(){
-        return response()->json(auth('api')->user());
-    }
 
     protected function createNewToken($token)
     {
