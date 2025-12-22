@@ -181,8 +181,8 @@ class OrderController extends Controller
                 'created_by_user_id' => Auth::id(),
                 'total_price' => $request->total_price,
                 'status' => 'pending',
-                'payment_status' => 'unpaid',
-                'invoice_number' => 'INV-' . time() . '-' . Auth::id(),
+                'status_on;ine_pay' => 'unpaid',
+                'order_no' => 'INV-' . time() . '-' . Auth::id(),
                 'note' => $request->note ?? null,
             ]);
 
