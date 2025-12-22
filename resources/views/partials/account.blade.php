@@ -19,12 +19,15 @@
         @else
             <ul class="cart_list">
                 @if (Auth::user()->role === 'admin' || Auth::user()->role === 'global_admin')
-                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>    
+                    <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>                    
+                    <li><a href="{{ route('auth.logout') }}">Logout</a></li>
                 @elseif (Auth::user()->role === 'customer')
+                    <li><a href="{{ route('home') }}">Home</a></li>    
                     <li><a href="{{ route('customer.dashboard') }}">Pesanan Saya</a></li>
+                    <li><a href="{{ route('customer.change-password') }}">Ganti Password</a></li>
+                    <li><a href="{{ route('auth.logout') }}">Logout</a></li>
                 @endif
-                <li><a href="{{ route('auth.logout') }}">Logout</a></li>
-                <li><a href="{{ route('home') }}">Home</a></li>
             </ul>
         @endauth
     </div>

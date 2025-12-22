@@ -115,10 +115,12 @@
                     <i class="ion-ios-information-outline" style="font-size: 30px;"></i>
                 </div>
                 <div>
-                    <h6 class="alert-heading font-weight-bold mb-1">Info Pengiriman (Pre-Order)</h6>
+                    <h6 class="alert-heading font-weight-bold mb-1">Informasi Pengiriman</h6>
                     <p class="mb-0 small">
-                        Pesanan Katering menggunakan sistem <strong>Pre-Order (H-1)</strong>. 
-                        Pesanan ini akan kami siapkan dan kirimkan <strong>BESOK HARI</strong> sesuai jadwal.
+                        Kami memasak makanan <strong>Secara Dadakan</strong> saat pesanan masuk. 
+                    </p>
+                    <p class="mb-0 small">
+                        Untuk menjaga kualitas & kehangatan, <strong>Mohon Menunggu</strong> sebentar demi rasa terbaik!
                     </p>
                 </div>
             </div>

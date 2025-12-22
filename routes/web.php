@@ -107,6 +107,8 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('customer')->middleware(CheckRoleCustomer::class)->group(function () {
      Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
      Route::get('/detail/{id}', [CustomerController::class, 'show'])->name('customer.detail');
+     Route::get('/change-password', [CustomerController::class, 'changePassword'])->name('customer.change-password');
+     Route::put('/change-password', [CustomerController::class, 'updatePassword'])->name('customer.update-password');
 });
 
 
