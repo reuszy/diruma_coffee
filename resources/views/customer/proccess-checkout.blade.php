@@ -94,7 +94,7 @@
                     </div>
                     <div class="mt-4">
                         <p class="text-muted small">* Silakan pilih metode pembayaran di sebelah kanan.</p>
-                        <a href="{{ route('home') }}" class="btn btn-secondary btn-sm">Batal / Kembali</a>
+                        <a href="{{ route('customer.dashboard') }}" class="btn btn-secondary btn-sm">Batal / Kembali</a>
                     </div>
                 </div>
             </div>
