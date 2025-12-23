@@ -66,10 +66,6 @@ class PaymentController extends Controller
             'additional_info' => $request->input('additional_info') ?? session('customer_details.additional_info'),
         ];
 
-        $delivery_fee = 0; 
-        $delivery_distance = null;
-        $price_per_mile = 0;
-
         $order_no = 'ORD-' . date('YmdHis');
 
         $item_details = [];

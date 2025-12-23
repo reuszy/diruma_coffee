@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -181,15 +182,19 @@ class OrderController extends Controller
                 'created_by_user_id' => Auth::id(),
                 'total_price' => $request->total_price,
                 'status' => 'pending',
-                'status_on;ine_pay' => 'unpaid',
-                'order_no' => 'INV-' . time() . '-' . Auth::id(),
+                'payment_method' => 'MIDTRANS',
+                'status_online_pay' => 'unpaid',
+                'order_no' => 'ORD-' . date('YmdHis'),
                 'note' => $request->note ?? null,
             ]);
 
             foreach ($request->items as $item) {
+                $menuData = Menu::find($item['menu_id']);
+
                 OrderItem::create([
                     'order_id' => $order->id,
                     'menu_id'  => $item['menu_id'],
+                    'menu_name' => $menuData->name,
                     'quantity' => $item['quantity'],
                     'price'    => $item['price'],
                     'subtotal' => $item['quantity'] * $item['price'],

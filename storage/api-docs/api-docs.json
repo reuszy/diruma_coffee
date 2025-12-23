@@ -454,7 +454,7 @@
         "/api/contact": {
             "get": {
                 "tags": [
-                    "Contact"
+                    "Kontak"
                 ],
                 "summary": "Ambil Semua Data Kontak & Sosmed",
                 "operationId": "a6075c52c06de8728ae3fe8a02921b3a",
@@ -468,7 +468,7 @@
         "/api/contact/update-info": {
             "post": {
                 "tags": [
-                    "Contact"
+                    "Kontak"
                 ],
                 "summary": "Update Info Dasar (Alamat, Telp, Jam Buka) - Admin Only",
                 "operationId": "cea9994565119f1be2f69a04feb390e3",
@@ -511,7 +511,7 @@
         "/api/contact/social-media": {
             "post": {
                 "tags": [
-                    "Contact"
+                    "Kontak"
                 ],
                 "summary": "Tambah Sosial Media Baru (Admin Only)",
                 "operationId": "a280e05e1f89bbd02b4a9d5433dc0a25",
@@ -550,7 +550,7 @@
         "/api/contact/social-media/{id}": {
             "delete": {
                 "tags": [
-                    "Contact"
+                    "Kontak"
                 ],
                 "summary": "Hapus Sosial Media (Admin Only)",
                 "operationId": "28f0fb5f3c385927267abbde7e00e3d7",
@@ -1813,8 +1813,8 @@
             "description": "Kategori"
         },
         {
-            "name": "Contact",
-            "description": "Contact"
+            "name": "Kontak",
+            "description": "Kontak"
         },
         {
             "name": "Admin Dashboard",

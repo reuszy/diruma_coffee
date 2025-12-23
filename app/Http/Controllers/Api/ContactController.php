@@ -15,7 +15,7 @@ class ContactController extends Controller
     /**
      * @OA\Get(
      * path="/api/contact",
-     * tags={"Contact"},
+     * tags={"Kontak"},
      * summary="Ambil Semua Data Kontak & Sosmed",
      * @OA\Response(response=200, description="Sukses"),
      * )
@@ -43,7 +43,7 @@ class ContactController extends Controller
     /**
      * @OA\Post(
      * path="/api/contact/update-info",
-     * tags={"Contact"},
+     * tags={"Kontak"},
      * summary="Update Info Dasar (Alamat, Telp, Jam Buka) - Admin Only",
      * security={{"bearerAuth":{}}},
      * @OA\RequestBody(
@@ -112,7 +112,7 @@ class ContactController extends Controller
     /**
      * @OA\Post(
      * path="/api/contact/social-media",
-     * tags={"Contact"},
+     * tags={"Kontak"},
      * summary="Tambah Sosial Media Baru (Admin Only)",
      * security={{"bearerAuth":{}}},
      * @OA\RequestBody(
@@ -152,7 +152,7 @@ class ContactController extends Controller
     /**
      * @OA\Delete(
      * path="/api/contact/social-media/{id}",
-     * tags={"Contact"},
+     * tags={"Kontak"},
      * summary="Hapus Sosial Media (Admin Only)",
      * security={{"bearerAuth":{}}},
      * @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
