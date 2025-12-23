@@ -1,12 +1,14 @@
 @php
-    $phone = $order->customer->phone_number;
-    
-    // 1. Hapus semua karakter selain angka (antisipasi user ngetik: +62 812-3456)
-    $phone = preg_replace('/[^0-9]/', '', $phone);
+    $phone = ''; 
 
-    // 2. Cek apakah angka depannya '0'? Jika ya, ganti dengan '62'
-    if(substr($phone, 0, 1) == '0') {
-        $phone = '62' . substr($phone, 1);
+    if ($order->customer && $order->customer->phone_number) {
+        $phone = $order->customer->phone_number;
+
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        if(substr($phone, 0, 1) == '0') {
+            $phone = '62' . substr($phone, 1);
+        }
     }
 @endphp
 

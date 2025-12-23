@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Customer;
 use App\Models\Menu;
 use App\Models\SiteSetting;
+use App\Models\User;
 
 class PaymentController extends Controller
 {
@@ -104,6 +105,30 @@ class PaymentController extends Controller
                                     $customerDetails['postcode'] ?? null
                 ])),
             ]);
+
+            $userId = Auth::id();
+
+            if ($userId) {
+                $userModel = User::find($userId);
+
+                if ($userModel) {
+                    $isUpdated = false;
+
+                    if (!empty($customerDetails['phone_number'])) {
+                        $userModel->phone_number = $customerDetails['phone_number'];
+                        $isUpdated = true;
+                    }
+
+                    if (!empty($customerDetails['address'])) {
+                        $userModel->address = $customerDetails['address'];
+                        $isUpdated = true;
+                    }
+
+                    if ($isUpdated) {
+                        $userModel->save();
+                    }
+                }
+            }
 
             $loggedInUserId = Auth::id();
 

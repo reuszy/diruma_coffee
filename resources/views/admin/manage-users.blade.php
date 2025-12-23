@@ -138,6 +138,7 @@
                         <tr>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>No. Telp</th>
                             <th>Role</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -149,6 +150,7 @@
                                 <td><i class='fa fa-user'></i>&nbsp; {{ $user->first_name }}  {{ $user->middle_name ? $user->middle_name . ' ' : '' }}  {{ $user->last_name }}</td>
                                 
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone_number }}</td>
                                 <td>{{ ucwords(str_replace('_', ' ', $user->role)) }}</td>
                                 <td>
                                     @if($user->status === 1)
