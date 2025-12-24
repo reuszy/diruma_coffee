@@ -30,23 +30,54 @@ class AdminController extends Controller
     public function index()
     {
         $currentYear = now()->year;
-    
-        $salesData = DB::table('orders')
-            ->selectRaw('MONTHNAME(created_at) as month, COUNT(*) as total_sales')
-            ->whereYear('created_at', $currentYear)  
-            ->groupByRaw('MONTH(created_at), MONTHNAME(created_at)')
-            ->orderByRaw('MONTH(created_at)')
-            ->pluck('total_sales', 'month');
-    
-        $months = [
-            'January', 'February', 'March', 'April', 'May', 'June', 
-            'July', 'August', 'September', 'October', 'November', 'December'
-        ];
-        $formattedSalesData = collect($months)->mapWithKeys(function ($month) use ($salesData) {
-            return [$month => $salesData->get($month, 0)];
+
+        $months = collect(range(1, 12))->map(function ($m) {
+            return date('F', mktime(0, 0, 0, $m, 1)); // January - December
         });
-    
-        return view('admin.dashboard', compact('formattedSalesData'));
+
+        $salesRaw = DB::table('orders')
+            ->selectRaw('MONTHNAME(created_at) as month, COUNT(*) as count')
+            ->whereYear('created_at', $currentYear)
+            ->groupByRaw('MONTH(created_at), MONTHNAME(created_at)')
+            ->pluck('count', 'month');
+
+        $revenueRaw = DB::table('orders')
+            ->selectRaw('MONTHNAME(created_at) as month, SUM(total_price) as total')
+            ->whereYear('created_at', $currentYear)
+            ->where('status_online_pay', 'paid')
+            ->groupByRaw('MONTH(created_at), MONTHNAME(created_at)')
+            ->pluck('total', 'month');
+
+        $formattedSalesData = $months->mapWithKeys(fn($m) => [$m => $salesRaw->get($m, 0)]);
+        $formattedRevenueData = $months->mapWithKeys(fn($m) => [$m => $revenueRaw->get($m, 0)]);
+
+        $recentOrders = Order::with('customer') 
+            ->latest()
+            ->take(5)
+            ->get();
+
+        $totalRevenue = DB::table('orders')
+            ->where('status_online_pay', 'paid')
+            ->sum('total_price');
+
+        $stats = DB::table('orders')
+            ->selectRaw("count(*) as all_orders")
+            ->selectRaw("count(case when status = 'pending' then 1 end) as pending")
+            ->selectRaw("count(case when order_type = 'online' then 1 end) as online")
+            ->selectRaw("count(case when order_type = 'instore' then 1 end) as instore")
+            ->first();
+
+        return view('admin.dashboard', [
+            'formattedSalesData'   => $formattedSalesData,
+            'formattedRevenueData' => $formattedRevenueData,
+            'totalRevenue'         => $totalRevenue,
+            'recentOrders'         => $recentOrders,
+
+            'pending_orders_count' => $stats->pending,
+            'online_orders_count'  => $stats->online,
+            'instore_orders_count' => $stats->instore,
+            'all_orders_count'     => $stats->all_orders,
+        ]);
     }
     
 

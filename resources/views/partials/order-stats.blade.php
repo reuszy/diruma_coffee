@@ -16,7 +16,7 @@
     <!-- ./col -->
     <div class="col-lg-3 col-6">
       <!-- small box -->
-      <div class="small-box bg-success">
+      <div class="small-box bg-warning">
         <div class="inner">
           <h3>{{ $online_orders_count }}</h3>
 
@@ -31,16 +31,16 @@
     <!-- ./col -->
     <div class="col-lg-3 col-6">
       <!-- small box -->
-      <div class="small-box bg-warning">
+      <div class="small-box bg-success">
         <div class="inner">
-          <h3>{{ $instore_orders_count }}</h3>
+          <h3>Rp {{ number_format($totalRevenue ?? 0, 0, ',', '.') }}</h3>
 
-          <p>Instore Orders</p>
+          <p>Total Pendapatan</p>
         </div>
         <div class="icon">
-          <i class="ion ion-bag"></i>
+          <i class="ion ion-cash"></i>
         </div>
-        <a href="{{ route('admin.orders.index', ['filter' => 'instore']) }}" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="#" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
