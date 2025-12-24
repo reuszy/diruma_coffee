@@ -13,6 +13,7 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Controllers\Traits\OrderStatisticsTrait;
 use App\Http\Controllers\Traits\AdminViewSharedDataTrait;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\JsonResponse;
 
 class AdminController extends Controller
 {
@@ -27,6 +28,7 @@ class AdminController extends Controller
         
     }
     
+
     public function index()
     {
         $currentYear = now()->year;
@@ -94,6 +96,7 @@ class AdminController extends Controller
         return view('admin.edit-my-profile', compact('user'));
     }
 
+
     public function updateMyProfile(UpdateProfileRequest $request)
     {
         $user = User::find(Auth::id());
@@ -149,6 +152,15 @@ class AdminController extends Controller
         $user->save();
 
         return redirect()->route('admin.dashboard')->with('success', 'Password kamu berhasil diubah.');
-    }    
+    }
+
+    public function checkNewOrders(Request $request)
+    {
+        $currentPendingCount = Order::where('status', 'pending')->count();
+
+        return response()->json([
+            'pending_count' => $currentPendingCount
+        ]);
+    }
     
 }

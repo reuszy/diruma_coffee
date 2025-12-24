@@ -114,7 +114,7 @@ Route::prefix('customer')->middleware(CheckRoleCustomer::class)->group(function 
 
 //Admin Dashboard routes
 Route::prefix('admin')->middleware(RedirectIfNotAdmin::class)->group(function () {
-     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('profile', [AdminController::class, 'viewMyProfile'])->name('admin.view.myprofile');
     Route::get('profile/edit', [AdminController::class, 'editMyProfile'])->name('admin.myprofile.edit');
     Route::put('profile/update', [AdminController::class, 'updateMyProfile'])->name('admin.myprofile.update');
@@ -122,6 +122,9 @@ Route::prefix('admin')->middleware(RedirectIfNotAdmin::class)->group(function ()
     //change password
     Route::get('change-password', [AdminController::class, 'showChangePasswordForm'])->name('change.password.form');
     Route::post('change-password', [AdminController::class, 'changePassword'])->name('change-password.update');
+
+    // Notif new order
+    Route::get('check-orders', [AdminController::class, 'checkNewOrders'])->name('admin.check.orders');
 
     // Reset Password
     Route::put('/users/{id}/reset-password', [UserAdminController::class, 'resetPassword'])->name('admin.users.reset-password');

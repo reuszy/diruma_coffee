@@ -118,8 +118,19 @@
                                 <td> {{ $order->delivery_distance === null ? 'N/A' : $order->delivery_distance . ' miles' }}</td>                              
                             </tr>
                             <tr>
-                                <th>Ongkir /km</th>
-                                <td> {{ $order->price_per_mile === null ? 'N/A' : html_entity_decode($site_settings->currency_symbol) . number_format($order->price_per_mile,2) }}</td>                              
+                                <th>Status Pembayaran</th>
+                                <td>
+                                        @switch($order->status_online_pay)
+                                            @case('unpaid')
+                                                <span class="badge badge-danger"><i class="fa fa-exclamation-circle"></i> Belum Bayar</span>
+                                                @break
+                                            @case('paid')
+                                                <span class="badge badge-success"><i class="fa fa-check"></i> Dibayar</span>
+                                                @break
+                                            @default
+                                                {{ ucfirst($order->status_online_pay) }}
+                                        @endswitch
+                                </td>                              
                             </tr>
                             
                         </table>
@@ -149,14 +160,17 @@
 
 
                                     @if(!is_null($order->status_online_pay) && $order->status_online_pay === 'unpaid')
-                                    <span class="badge badge-danger"><i class="fa fa-exclamation-circle"></i> unpaid</span>
+                                    <span class="badge badge-danger"><i class="fa fa-exclamation-circle"></i> Belum Bayar</span>
                                     @else
                                         @switch($order->status)
                                             @case('pending')
-                                                <span class="badge badge-danger"><i class="fa fa-exclamation-circle"></i> {{ ucfirst($order->status) }}</span>
+                                                <span class="badge badge-warning"><i class="fa fa-hourglass-start"></i> Pesanan Diproses</span>
                                                 @break
                                             @case('completed')
-                                                <span class="badge badge-success"><i class="fa fa-check"></i> {{ ucfirst($order->status) }}</span>
+                                                <span class="badge badge-success"><i class="fa fa-check"></i> Pesanan Diterima</span>
+                                                @break
+                                            @case('delivered')
+                                                <span class="badge badge-secondary"><i class="fa fa-truck"></i> Mengantar Pesanan</span>
                                                 @break
                                             @default
                                                 {{ ucfirst($order->status) }}

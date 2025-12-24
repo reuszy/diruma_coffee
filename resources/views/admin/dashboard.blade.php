@@ -20,10 +20,12 @@
 <script src="/admin_resources/js/dashboard.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-
         var ctxSales = document.getElementById('salesBarChart').getContext('2d');
         var salesData = {!! json_encode($formattedSalesData->values()->toArray()) !!}; 
         var salesLabels = {!! json_encode($formattedSalesData->keys()->toArray()) !!}; 
@@ -35,14 +37,12 @@
                 datasets: [{
                     label: 'Jumlah Transaksi',
                     data: salesData,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Warna Biru
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', 
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
                 }]
             },
-            options: {
-                scales: { y: { beginAtZero: true } }
-            }
+            options: { scales: { y: { beginAtZero: true } } }
         });
 
         var ctxRevenue = document.getElementById('revenueBarChart').getContext('2d');
@@ -66,27 +66,18 @@
             options: {
                 scales: { 
                     y: { 
-                        beginAtZero: true, // Wajib true
-                        suggestedMin: 0,   // Paksa mulai dari 0
-                        ticks: {
-                            callback: function(value) {
-                                // Format Rupiah yang lebih rapi
-                                return 'Rp ' + new Intl.NumberFormat('id-ID').format(value);
-                            }
-                        }
-                    }
+                        beginAtZero: true, 
+                        suggestedMin: 0,
+                        ticks: { callback: function(value) { return 'Rp ' + new Intl.NumberFormat('id-ID').format(value); } }
+                    } 
                 },
                 plugins: {
                     tooltip: {
                         callbacks: {
                             label: function(context) {
                                 let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.y !== null) {
-                                    label += new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(context.parsed.y);
-                                }
+                                if (label) label += ': ';
+                                if (context.parsed.y !== null) label += new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(context.parsed.y);
                                 return label;
                             }
                         }
@@ -94,8 +85,75 @@
                 }
             }
         });
-
     });
+
+    $(document).ready(function() {
+        
+        let lastPendingCount = {{ $pending_orders_count ?? 0 }};
+        let originalTitle = document.title;
+
+        const FITUR_NOTIF_AKTIF = false;
+
+        function checkNewOrders() {
+
+            if (FITUR_NOTIF_AKTIF === false) return;
+
+            $.ajax({
+                url: "{{ route('admin.check.orders') }}",
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    let newCount = response.pending_count;
+                    
+                    if (newCount > lastPendingCount) {
+
+                        document.title = "(1) 🔔 Order Masuk! - Admin";
+
+                        Swal.fire({
+                            title: 'Pesanan Baru Masuk!',
+                            text: `Ada ${newCount} pesanan pending yang perlu diproses.`,
+                            icon: 'info', // Icon: success, error, warning, info, question
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Lihat Pesanan',
+                            cancelButtonText: 'Tutup'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            } else {
+                                document.title = originalTitle;
+                            }
+                        });
+                        
+                        lastPendingCount = newCount;
+                    } 
+                    else if (newCount < lastPendingCount) {
+                        lastPendingCount = newCount;
+                        document.title = originalTitle;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Gagal cek order:", error);
+                }
+            });
+        }
+
+        if (FITUR_NOTIF_AKTIF) {
+            setInterval(checkNewOrders, 10000);
+            console.log("✅ Fitur Notifikasi: AKTIF");
+        } else {
+            console.log("❌ Fitur Notifikasi: DINONAKTIFKAN");
+        }
+
+        function playNotificationSound() {
+        let audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3');
+        audio.play().catch(function(error) {
+            console.log("Audio autoplay dicegah browser.");
+        });
+    }
+    });
+
 </script>
 @endpush
 
