@@ -142,6 +142,11 @@ php artisan serve
 
 Lihat website nya di: `http://127.0.0.1:8000`.
 
+## 👥 Contributors
+
+- **Rizqi Dwi Saputra** — Fullstack Developer  
+  GitHub: https://github.com/reuszy
+
 ## Credits
 
 -   **[BootstrapDash](https://github.com/BootstrapDash/celestialAdmin-free-admin-template)**: The admin dashboard celestialAdmin admin template
