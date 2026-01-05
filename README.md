@@ -21,7 +21,7 @@ Project ini adalah **Sistem Manajemen Coffeeshop Diruma** yang dibangun mengguna
 
 ## Demo
 
-Akses demo dari project ini: [Sistem Manajemen Coffeeshop Diruma](https://diruma.reuszy.site/)
+Akses demo dari project ini: [Sistem Manajemen Coffeeshop Diruma](https://www.reuszy.site/)
 
 ---
 
